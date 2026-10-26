@@ -2,7 +2,7 @@ import { App, Modal, Notice, PluginSettingTab, Setting, setIcon } from "obsidian
 import type { SettingDefinitionItem } from "obsidian";
 import type CharacterLoom from "./main";
 import { Choice, fieldLabels, fieldOrder, genderFields } from "./data";
-import { clearGender, genderChoices, setWeight } from "./core";
+import { choiceGender, clearGender, genderChoices, setWeight } from "./core";
 import { elementWindow } from "./window-events";
 import { ListWindow, SETTINGS_PAGE_SIZE, VirtualSettingsList } from "./virtual-list";
 import { exportTables, mergeTables, parseTableFile } from "./table-transfer";
@@ -56,7 +56,6 @@ export class CloomSettingTab extends PluginSettingTab {
     this.disposeLists();
     container.empty();
     this.containerEl.addClass("cloom-settings");
-    new Setting(container).setName("Character Loom").setHeading().setClass("cloom-settings-title");
     container.createEl("p", { cls: "cloom-settings-description", text: "Здесь можно редактировать варианты для генерации персонажей. Таблицы общие для всех заметок текущего хранилища. Изменения сохраняются автоматически. Чтобы создать генератор в заметке, вызовите в палитре команд «Вставить генератор после текущего блока»." });
     this.renderTransferControls(container);
     if (this.plugin.settingsErrors.length) {
@@ -366,14 +365,14 @@ export class CloomSettingTab extends PluginSettingTab {
         sum = { scale, total: 0, any: 0, genders: new Map() };
         for (const entry of row.siblings) {
           const weight = scale ? entry.weight / scale : 0;
-          const gender = entry.gender ?? row.parent?.gender;
+          const gender = choiceGender(entry, row.parent);
           sum.total += weight;
           if (gender) sum.genders.set(gender, (sum.genders.get(gender) ?? 0) + weight);
           else sum.any += weight;
         }
         sums.set(row.siblings, sum);
       }
-      const gender = row.item.gender ?? row.parent?.gender;
+      const gender = choiceGender(row.item, row.parent);
       const total = this.hasGender(row.key) && gender ? sum.any + (sum.genders.get(gender) ?? 0) : sum.total;
       const chance = total && sum.scale ? (row.item.weight / sum.scale) / total * 100 : 0;
       row.percent.setText(`≈ ${chance.toLocaleString("ru-RU", { maximumFractionDigits: 2 })}%`);
@@ -388,7 +387,9 @@ export class CloomSettingTab extends PluginSettingTab {
       select.empty();
       select.createEl("option", { value: "", text: "Любой" });
       for (const item of genders) if (item.gender) select.createEl("option", { value: item.gender, text: item.value });
-      select.value = row.item.gender ?? row.parent?.gender ?? "";
+      if (row.parent?.gender) row.item.gender = row.parent.gender;
+      select.value = choiceGender(row.item, row.parent) ?? "";
+      select.disabled = !!row.parent?.gender;
     }
   }
 
@@ -423,7 +424,11 @@ export class CloomSettingTab extends PluginSettingTab {
     if (this.hasGender(key)) {
       const select = line.createEl("select", { cls: "cloom-gender-select", attr: { "aria-label": "Пол варианта" } });
       row.select = select;
-      select.addEventListener("change", () => { item.gender = select.value; this.refreshProbabilities(); void this.persist(); });
+      select.addEventListener("change", () => {
+        item.gender = parent?.gender || select.value;
+        if (item.gender) for (const child of item.children ?? []) child.gender = item.gender;
+        this.refreshGenders(); this.refreshProbabilities(); void this.persist();
+      });
     }
     const controls = line.createDiv({ cls: "cloom-choice-actions" });
     this.createIconButton(controls, "plus", "Добавить вариант ниже", () => this.add(key, siblings, siblings.indexOf(item)));

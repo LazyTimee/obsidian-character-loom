@@ -1,6 +1,6 @@
 import { App, MarkdownPostProcessorContext, MarkdownRenderChild, MarkdownView, Notice, Plugin, setIcon } from "obsidian";
 import { Choice, fieldLabels, genderFields, rerollLabels, Tables } from "./data";
-import { currentGender, genderLabel, generate, generateAll, locateBlock, parseValues, pickForGender, readBlocks, Values } from "./core";
+import { choiceGender, currentGender, genderLabel, generate, generateAll, locateBlock, parseValues, pickForGender, readBlocks, Values } from "./core";
 import { knownVariant } from "./variant-presence";
 import { matchingVariants, VariantEditor, VariantLocation } from "./variant-editor";
 import { CardTarget } from "./card-target";
@@ -143,7 +143,7 @@ export class CardController {
     try {
       if (draft) {
         item.value = draft.value; item.weight = draft.weight;
-        if (genderFields.includes(key)) item.gender = draft.gender;
+        if (genderFields.includes(key)) item.gender = choiceGender(draft, parent);
         if (key === "backstory-title") item.pairedValue = draft.pairedValue;
       }
       else siblings.splice(index, 1);
@@ -155,7 +155,7 @@ export class CardController {
         updates = { [key]: "", ...(key === "backstory-title" ? { "backstory-text": "" } : {}),
           ...generate(this.options.tables(), key, values, Math.random, false) };
       }
-      const variantGender = item.gender ?? parent?.gender;
+      const variantGender = choiceGender(item, parent);
       if (draft && genderFields.includes(key) && cardGender && variantGender && variantGender !== cardGender) {
         updates[key] = pickForGender(this.options.tables()[key] ?? [], cardGender)?.value ?? "";
       }

@@ -1,7 +1,7 @@
 import { App, Modal, Notice, Setting, setIcon } from "obsidian";
 import { Choice, fieldLabels, genderFields, Tables } from "./data";
 import { elementWindow } from "./window-events";
-import { genderChoices, Values } from "./core";
+import { choiceGender, genderChoices, Values } from "./core";
 
 export type VariantLocation = { item: Choice; siblings: Choice[]; parent?: Choice };
 const clean = (text: string) => text.replace(/[\r\n]+/g, " ").trim();
@@ -92,7 +92,7 @@ export class VariantEditor extends Modal {
     const hasGender = genderFields.includes(this.key);
     const editableState = (item: Choice) => JSON.stringify([
       clean(item.value), item.weight,
-      hasGender ? item.gender ?? location.parent?.gender ?? "" : "",
+      hasGender ? choiceGender(item, location.parent) ?? "" : "",
       this.key === "backstory-title" ? clean(item.pairedValue ?? "") : ""
     ]);
     const originalState = editableState(draft);
@@ -107,9 +107,9 @@ export class VariantEditor extends Modal {
     name.value = draft.value;
     const resize = (field: HTMLTextAreaElement) => { field.setCssStyles({ height: "auto" }); field.setCssStyles({ height: `${field.scrollHeight + 2}px` }); };
     const probability = () => {
-      const gender = draft.gender ?? location.parent?.gender;
+      const gender = choiceGender(draft, location.parent);
       const eligible = location.siblings.map(item => item === location.item ? draft : item)
-        .filter(item => !hasGender || !gender || !(item.gender ?? location.parent?.gender) || (item.gender ?? location.parent?.gender) === gender);
+        .filter(item => !hasGender || !gender || !choiceGender(item, location.parent) || choiceGender(item, location.parent) === gender);
       const scale = Math.max(0, ...eligible.map(item => item.weight));
       const total = scale ? eligible.reduce((sum, item) => sum + item.weight / scale, 0) : 0;
       percent.setText(`≈ ${(total ? draft.weight / scale / total * 100 : 0).toLocaleString("ru-RU", { maximumFractionDigits: 2 })}%`);
@@ -120,8 +120,9 @@ export class VariantEditor extends Modal {
       const select = row.createEl("select", { cls: "cloom-gender-select", attr: { "aria-label": "Пол варианта" } });
       select.createEl("option", { value: "", text: "Любой" });
       for (const gender of genderChoices(this.tables)) if (gender.gender) select.createEl("option", { value: gender.gender, text: gender.value });
-      select.value = draft.gender ?? location.parent?.gender ?? "";
-      select.addEventListener("change", () => { draft.gender = select.value; probability(); });
+      select.value = choiceGender(draft, location.parent) ?? "";
+      select.disabled = !!location.parent?.gender;
+      select.addEventListener("change", () => { draft.gender = location.parent?.gender || select.value; probability(); });
     }
     const controls = row.createDiv({ cls: "cloom-choice-actions" });
     const icon = (label: string, name: string) => {

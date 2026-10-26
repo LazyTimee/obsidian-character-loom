@@ -176,1061 +176,1061 @@
   "occupation": [
     {
       "value": "Академик/профессор",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Картограф",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Советник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Дрессировщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Лучник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Парикмахер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бард/министрель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Кузнец",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Оружейник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Телохранитель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Переплетчик (мастер переплетного дела)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Охотник за головами",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Пивовар",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Мясник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Плотник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Возчик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Сыровар",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Городская стража",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Повар",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Варщик (тот, кто делает котлы, бочки и т.д.)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Стоматолог/дантист",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Инспектор/детектив",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Дипломат/политолог",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Портной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Красильщик тканей",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Коваль (который делает подковы для лошадей)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Рыбак",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Мастер по изготовлению луков и стрел",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Флорист",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Лакей",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Садовник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Боец-гладиатор",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Гончар-глазуровщик (тот, кто делает очки)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Шляпник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Целитель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изобретатель (оружие, магия, эликсиры и т.д.)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Шут",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ювелир",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Личная горничная",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Слесарь/мастер по замкам",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Дровосек",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наемный убийца",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Мастер церемоний",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Торговец",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Акушер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Музыкант (игра на инструментах)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Некромант",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Жрец",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Медсестра",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ветеринар",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Художник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бумажник (работник)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Пират",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Керамист",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Зельеваритель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Заключенный",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Паломник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Проститутка",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Веревочник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Cедельный мастер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Моряк",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Скульптор",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Слуга",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Кораблестроитель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Сапожник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Владелец лавки",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Раб (беглый)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Торговец рабами",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Контрабандист",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Солдат/Воин",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Шпион",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Правая рука",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Каменьщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Военный врач",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Кондитер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Швея",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Коженник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Трубочист",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Вор",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Мастер резьбы по дереву",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Владелец похоронного бюро",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Тренер по владению оружием",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Мастер по созданию колес",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ведьма/волшебник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Мудрец",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Паладин",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Архитектор/зодчий",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Строитель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Авантюрист",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Азартный игрок",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бродяга/Нищий",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Городской сумасшедший",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бывший преступник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Народный герой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Аукционист",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бакалейщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Банкир",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Оценщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Баньщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ростовщик/меняла",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Звонарь",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Культист",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Монах",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Отшельник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Послушник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Прорицатель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Свечник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Охранник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Палач",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Пожарный",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Пытатель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Скотовод",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Алхимик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Аптекарь",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Гробовщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Травник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Хирург",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Акробат",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Актер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Иконописец",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Поэт",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Татуировщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Шахтер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Друид",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Призыватель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Шаман",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Астролог",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Археолог",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ботаник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Библиотекарь",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Историк",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Математик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Студент",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ученый/исследователь",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Учитель",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Аристократ",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Министр",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Паж",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Сборщик налогов",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Судья",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Браконьер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наркобарон",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Скупщик краденого («мешок»)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Устроитель петушиных боёв",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Винокур",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Смотритель приюта",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Гончар",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Тюремщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Зеркальщик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Стеклодув",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Оруженосец",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Лодочник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Кучер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ткач/ткачиха",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Глашатай",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Курьер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Переводчик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Конюх",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Мельник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Охотник",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Пастух",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Пахарь",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Пчеловод/бортник",
-      "weight": 0
+      "weight": 1
     }
   ],
   "appearance-feature": [
     {
       "value": "Пирсинг",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Грязная и драная одежда",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Отсутствующий зуб",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Необычный цвет глаз (или глаза разного цвета)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Родинка",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Необычный цвет кожи",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Необычный цвет волос",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Нервный тик",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Приметный нос",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Приметная осанка (прямая или скрюченная)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Невероятная красота",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Невероятное уродство",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ожоги от огня или кислоты",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Раны от страшных драк, сломанные черты лица, шрамы",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Отсутствуют конечность, палец, рука, нога",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Потерял одно из своих чувств: слепой, глухой или немой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На теле след ужасной болезни, может быть она все еще поражает его",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Руки такие же большие, как ствол дерева",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Длинные и узкие конечности, напоминающие огромного паука",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Очень толстый, едва может ходить самостоятельно",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Очень худой, их может унести ветер",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Что-то зловещее в его чертах",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Старая рана, которая зажила неправильно, или что-то врожденное. Хромота или сгорбленная спина.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Невероятно скучный во внешности, похож любого другого",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Старый, но вглядит очень молодо, нет и следа течения времени",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Молодой, но, похоже, уже видел все, что можно было увидеть, имеет следы старости",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Исключительно спортивное тело, не видно ни грамма жира",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Трудно понять, какого пола персонаж",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Есть что-то жуткое, не из этого мира, не совсем красивое, не уродливое, просто поразительное",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Благородная кровь, и он это знает, весь источает превосходство",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Тело, отмеченное тяжелой работой, сильные руки и спина, мозоли",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бледный, редко выходит на улицу",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Вы - первое, что приходит на ум, когда думают о \"красивых людях\".",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Впечатляющие волосы на голове (или на лице), будь то их длина или внешний вид",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Нет ни клочка волос на теле",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Впечатляющие отметины или татуировки по всему телу. Будь то результат пьяной ночи, ритуала, позорной ошибки или несправедливости.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Безобидный и невинный, одежда чистая, никаких признаков враждебности",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Страшен, его лицо - это лицо акулы, и все в его существе отдает бедой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Слишком много одежды",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Каждая часть тела покрыта украшениями, всякий раз, когда он двигается, это создает каскад звуков",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Минимум одежды, по возможности ее вообще не будет",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Чрезвычайно пестрая одежда, которая выделяется в толпе",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда тусклого цвета, очень грустная, пресная",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Застрял в прошлом, одевается и ведет себя старомодно и постоянно жалуется, что \"раньше было лучше\"",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Безупречно одет, настолько элегантен, что в любой момент может попасть на любое мероприятие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет в защитный костюм",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Слишком много красится, настолько, что под макияжем едва видно лицо",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ужасно больной, бледный с огромными мешками под глазами",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Странная манера речи: останавливается не в том месте и ставит ударение не на тот слог",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Грубый и сломанный голос",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Такой очаровательный голос, что невозможно оторваться",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Говорит очень грубо, используя много ругательств",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Военная выправка в одежде и манерах",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Чистюля, ни пылинки на одежде",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Очень сильный запах, от которого не избавиться",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Источает сладкий аромат, который успокаивает и благоухает",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда, покрывающая все тело, маскируя их личности",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наркозависимоть - подергивание глаз, непроизвольные движения, налитые кровью глаза",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Глубоко верующий в одного из божеств, не может перестать говорить о религии",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Сексуальное тело и кричащая об этом одежда",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Холоден, как лед, никогда не шутит",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Источает тепло и доброту, трудно не чувствовать себя комфортно рядом",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Всегда выглядят испуганными или настороженными, постоянно осматривается по сторонам",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Потерянный и неряшлевый вид, взгляд, устремленный в пустоту, иногда кажется, что он знает то, чего не знают другие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Привычка причинять себе вред, грызет свои ногти",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Множество веснушек",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Чрезмерно вольно ведет себя по отношению к другим, даже незнакомым, не имеет понятия о личном пространстве",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Своеобразный узнаваемый смех (лай, фырканье и т.д.)",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Заметное ОКР, постоянно делает определенный жест снова и снова",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Привычка курить вонючий табак, запах чрезвычайно сильный",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Злоупотребляет умными словами и слишком сложными формулировками",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Не может заткнуться. У него всегда есть хорошая история или анекдот, и он следит за тем, чтобы каждый его услышал.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Носит странный аксессуар, который разительно отличается от остального наряда",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Вечно пьяный и праздный",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Не уверен в себе и своих решениях, всегда ищет чужой совет",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Фанатично уверен в себе",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Занимает слишком много места, громко разговаривает. Протестуйте сколько угодно, он извинится и продолжит.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Не может устоять на месте ни секунды",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Развитый эмоциональный интелект, максимально комфотен в общении",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Погремушка: ремни, мешочки и сумки, есть инструмент на все случаи жизни",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Домашнее живтное, которое всегда следует за хозяином",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Вечно радостный и энергичный",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Актер не по призванию, а по жизни, постоянно драматизирует",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Всегда напевает, постукивает, качает головой или иным образом создает музыку",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Неприметный и тихий, не любит быть на виду",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Не может уйти, не будучи в центре внимания",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Мрачный и жуткий, носит при себе аксессуар, напоминающий о смерти и никогда не моргает. Никогда.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Медлителен и осторожен, как будто боится причинить вред или сломать все, к чему прикаснется",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Импульсивный и легкий на подъем, слетающий с катушек",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Пребор и ультранасилие - вполне оправданный инструмент, но в остальном он - самое милое создание",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Безразличие ко всему",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одна из прядей его волос белая",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Высокий голос",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Витилиго",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Острые клыки",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Потресканная кожа",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Глаза-хамелеоны",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Постоянный насморк",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Хорошо видны вены",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Обожает каламбуры и игру слов",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Вечно засаленные руки и запах древесной смолы",
-      "weight": 0
+      "weight": 1
     }
   ],
   "quirk": [
@@ -3049,54 +3049,84 @@
   ],
   "gender-age": [
     {
-      "value": "Мальчик",
+      "value": "Детство",
       "weight": 7,
-      "gender": "male"
+      "children": [
+        {
+          "value": "Мальчик",
+          "weight": 1,
+          "gender": "male"
+        },
+        {
+          "value": "Девочка",
+          "weight": 1,
+          "gender": "female"
+        }
+      ]
     },
     {
-      "value": "Молодой парень",
+      "value": "Юность",
       "weight": 8,
-      "gender": "male"
+      "children": [
+        {
+          "value": "Молодой парень",
+          "weight": 1,
+          "gender": "male"
+        },
+        {
+          "value": "Юная девушка",
+          "weight": 1,
+          "gender": "female"
+        }
+      ]
     },
     {
-      "value": "Молодой мужчина",
+      "value": "Молодость",
       "weight": 9,
-      "gender": "male"
+      "children": [
+        {
+          "value": "Молодой мужчина",
+          "weight": 1,
+          "gender": "male"
+        },
+        {
+          "value": "Молодая женщина",
+          "weight": 1,
+          "gender": "female"
+        }
+      ]
     },
     {
-      "value": "Мужчина средних лет",
+      "value": "Средний возраст",
       "weight": 8,
-      "gender": "male"
+      "children": [
+        {
+          "value": "Мужчина средних лет",
+          "weight": 1,
+          "gender": "male"
+        },
+        {
+          "value": "Женщина средних лет",
+          "weight": 1,
+          "gender": "female"
+        }
+      ]
     },
     {
-      "value": "Старец",
+      "value": "Старость",
       "weight": 7,
-      "gender": "male"
-    },
-    {
-      "value": "Девочка",
-      "weight": 7,
-      "gender": "female"
-    },
-    {
-      "value": "Юная девушка",
-      "weight": 8,
-      "gender": "female"
-    },
-    {
-      "value": "Молодая женщина",
-      "weight": 9,
-      "gender": "female"
-    },
-    {
-      "value": "Женщина средних лет",
-      "weight": 8,
-      "gender": "female"
-    },
-    {
-      "value": "Старушка",
-      "weight": 7,
-      "gender": "female"
+      "children": [
+        {
+          "value": "Старец",
+          "weight": 1,
+          "gender": "male"
+        },
+        {
+          "value": "Старушка",
+          "weight": 1,
+          "gender": "female"
+        }
+      ]
     }
   ],
   "height": [
@@ -3140,2332 +3170,2332 @@
   "build": [
     {
       "value": "долговязой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "широкоплечей",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "атлетической",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "коренастой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "нескладной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "грузной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "угловатой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ловкой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сгорбленной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "худощавой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "статной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "тучной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "стройной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "гибкой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "внушительной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "полноватой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "тощей",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "мускулистой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "грациозной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "худой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жилистой",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "соблазнительной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "устрашающей",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "могучей",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "изящной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "нестандартной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "подвижной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "спортивной",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "обычной",
-      "weight": 0
+      "weight": 1
     }
   ],
   "hair-length": [
     {
       "value": "очень короткие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "короткие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "средней длины",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "длинные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "очень длинные",
-      "weight": 0
+      "weight": 1
     }
   ],
   "hair-type": [
     {
       "value": "причесанные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "распущенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "взъерошенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "курчавые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "кудрявые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "растрёпанные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "вьющиеся",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "волнистые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "спутанные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "шелковистые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "заплетеные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "прилизанные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жидкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сальные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "немытые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "непослушные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "густые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "роскошные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "упрямые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "гладкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пышные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "редкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "мягкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "шикарные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жёсткие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "срезанные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "прямые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "блестящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "буйные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ухоженные",
-      "weight": 0
+      "weight": 1
     }
   ],
   "eyes-form": [
     {
       "value": "бегающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бездонные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "безжизненные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бессонные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "блестящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "близорукие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "блуждающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "больные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "быстрые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "влажные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "воспаленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жаркие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "заспанные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "заплаканные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "заплывшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "застывшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "затуманенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "зеркальные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "зоркие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "зыбкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "измученные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "искрометные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "искрящиеся",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "экстатические",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ледяные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "лихорадочные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "лучистые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "вещие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "мерцающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "мутные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "неподвижные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "огненные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "опухшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "остекленевшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "блескучие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "отуманенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пламенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "погасшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "полусонные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "померкшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "понурые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "потупленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "потухшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пристальные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "прожигающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "прозрачные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пронзительные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пронизывающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пьяные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "рассеянные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сверкающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сияющие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "смирные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сонные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "стеклянные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "студенистые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сухие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "туманные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "тусклые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "увядшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "усталые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "утомленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "хмельные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "чистые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "юркие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "яркие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ясные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "азартные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "алчные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "яростные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "энергичные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "безгрешные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бездумные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "беззаботные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "беззащитные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "безмятежные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "шустрые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "безумные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "беспечные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "беспокойные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бессмысленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бесстыдные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бесстыжие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бесшабашные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бешеные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "благодарные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "блудливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бойкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "брезгливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "шальные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "вдумчивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "веселые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "взволнованные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "виноватые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "властные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "влюбленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "внимательные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "возбужденные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "шаловливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "вопрошающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "воровские",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "восторженные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "восхищенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "враждебные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "встревоженные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "въедливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "вызывающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "выразительные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "гневные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "говорящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "голодные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "гордые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "горячие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "горящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "грозные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "грустные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "дерзкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "дикие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "добродушные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "добрые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "доверчивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "дурные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "дьявольские",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "чуткие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жадные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жалкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жалобные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жалостные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жгучие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жестокие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "живые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жизнерадостные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жуткие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "завидущие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "завистливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "завороженные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "задорные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "задумчивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "зачарованные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "злобные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "зовущие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "изумленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "изучающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "иронические",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "испытующие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ищущие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "кислые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "клейкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "колючие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "чужие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ласковые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "леденящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ледяные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ленивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "лихие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "лукавые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "льстивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "любвеобильные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "любопытные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "любящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "мальчишеские",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "манящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "масленые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "честные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "мечтательные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "молящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "мудрые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "мученические",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "цепкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "наблюдательные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "наглые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "надменные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "наивные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "насмешливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "настороженные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "нахальные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "невинные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "недобрые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "нежные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ненавидящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "неподкупные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "непонимающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "несчастные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "огорченные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "одичалые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "одуревшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "холодные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "озорные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "осмысленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "отважные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "отрешенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "отсутствующие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "отчаянные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "отчужденные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ошарашенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пасмурные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "переменчивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "печальные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "плутоватые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "плутовские",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "подозрительные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "покорные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "понимающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "послушные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "посторонние",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "почтительные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "правдивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "презрительные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "приветливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пронзительные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "проникновенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "проницательные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пронырливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "простодушные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "прямодушные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пугливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пустые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "пытливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "радостные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "развратные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ревнивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "робкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сверлящие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сердитые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "серьезные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "скользкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "скорбные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "смелые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "смешливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "смеющиеся",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "смышленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сочувствующие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "спокойные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "стеснительные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сторожкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "страдальческие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "страдающие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "строгие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сумасшедшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "суровые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "счастливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сытые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "теплые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "тихие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "томные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "тоскующие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "требовательные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "тревожные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "трогательные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "тупые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "угарные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "угнетенные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "угодливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "удивленные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "укоризненные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "улыбчивые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "умные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "унылые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "упорные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "упрямые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "усмешливые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "хитрецкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "хитрые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "хищные",
-      "weight": 0
+      "weight": 1
     }
   ],
   "eyes-kind": [
     {
       "value": "большие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "суженные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "широкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "небольшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "прищуренные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "глубокие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "узкие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "длинные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "косые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "круглые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "полуприкрытые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "кукольные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "маленькие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "миндалевидные",
-      "weight": 0
+      "weight": 1
     }
   ],
   "eyes-color": [
     {
       "value": "белые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бесцветные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "бирюзовые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "васильковые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "выцветшие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "голубовато-серые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "голубые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "дегтярно-черные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "желтые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "дымчатые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "жемчужно-серые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "шоколадные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "янтарные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "зеленые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "золотистые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "золотые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "изумрудные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "иссиня-черные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "карие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "коричневые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "кофейные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "красные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "лазурные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "медовые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ореховые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сапфировые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "светло-голубые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "светло-зеленые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "светло-карие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "светло-синие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "светлые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "сердоликовые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "серые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "черные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "синие",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "темно-серые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "темные",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "ультрамариновые",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "фиалковые",
-      "weight": 0
+      "weight": 1
     }
   ],
   "backstory-title": [
     {
       "value": "Вина выжившего.",
       "pairedValue": "Оставшись единственным выжившим в катастрофе, унесшей жизни его близких, этот персонаж борется с чувством вины и посвящает свою жизнь помощи другим, молча сражаясь с внутренними неурядицами.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Королевский Секрет.",
       "pairedValue": "Персонаж, родившийся в королевской семье, отказался от своего титула и богатства, чтобы жить анонимно, движимый тайным предательством в своей семье, которое навсегда изменило его мировоззрение.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Дитя пророчества.",
       "pairedValue": "Этот персонаж, воспитанный в уединении, растет с верой в то, что ему суждено исполнить древнее пророчество, испытывая огромное давление и высокие ожидания со стороны своих опекунов.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Искупление воина.",
       "pairedValue": "Когда-то этот персонаж был внушающим страх солдатом, ответственным за разрушительные действия на войне, а теперь ищет искупления в деяниях доброты и мужества, преследуемый воспоминаниями о прошлой жестокости.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Побег из культа.",
       "pairedValue": "Выросший в изолированной секте, этот персонаж сбежал из нее в юном возрасте и теперь изо всех сил пытается приспособиться к обычному обществу, справляясь с остаточной травмой и недоверием.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Лишенный наследства наследник.",
       "pairedValue": "Лишившись наследства от могущественного семейного состояния после отказа следовать неэтичным практикам, этот персонаж строит жизнь с нуля, руководствуясь твердыми моральными убеждениями и стойкостью.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Запретная магия.",
       "pairedValue": "Этот персонаж родился с запрещёнными магическими способностями в обществе, где преследуют магов. Он рано научился скрывать свои способности и ведёт двойную жизнь, чтобы выжить.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Потерянная память.",
       "pairedValue": "Потеряв воспоминания в результате загадочного инцидента, этот персонаж пытается собрать воедино фрагменты своего прошлого, одновременно формируя новую личность, не зная, кому доверять.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Осиротевший бунтарь.",
       "pairedValue": "Выросший сиротой в условиях сурового режима, этот персонаж стал лидером восстания, движимым местью за свою семью и стремлением к справедливости и свободе.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Преданный любовью.",
       "pairedValue": "Когда-то этот персонаж был сильно влюблен, но затем его партнер предал его, из-за чего он возвел вокруг себя эмоциональные стены и стал относиться к будущим отношениям со скептицизмом и осторожностью.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Выращенный пиратами.",
       "pairedValue": "Этот персонаж, воспитанный пиратами после того, как его семья пропала в море, научился навыкам выживания, стойкости и сомнительным моральным принципам, а затем изо всех сил пытался найти свой собственный моральный компас.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бывшая знаменитость.",
       "pairedValue": "Этот персонаж когда-то был знаменит, но покинул центр внимания после скандала, теперь живет анонимно и постоянно опасается разоблачения, одновременно ища подлинные связи и смысл.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Скрытая родословная.",
       "pairedValue": "Не осознавая своего могущественного происхождения, этот персонаж вырос в скромной обстановке, но в конечном итоге осознал свое наследие, а также связанные с ним ответственность и опасности.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Искусственное создание.",
       "pairedValue": "Этот персонаж, созданный искусственно в лаборатории, сталкивается с вопросами идентичности, человечности и самоуважения, пытаясь обрести признание в мире, который считает его неестественным.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Проклятый при рождении.",
       "pairedValue": "Этот персонаж родился с проклятием, испытывал изоляцию и страх в своем сообществе, рос одиноким и непонятым, но был полон решимости преодолеть или разрушить проклятие, которое его определяло.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Сожаление изобретателя.",
       "pairedValue": "Изобретатель, чье величайшее творение вызвало непреднамеренные разрушения, этот персонаж несет в себе глубокое сожаление, посвящая свою жизнь исправлению прошлых ошибок и предотвращению будущих трагедий.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Продан в рабство.",
       "pairedValue": "Проданный в рабство в юном возрасте, этот персонаж развил в себе навыки и стойкость, преодолевая трудности, тайно планируя свою будущую свободу и искупление.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ложно обвиненный.",
       "pairedValue": "Несправедливо обвиненный и наказанный за преступление, которого он не совершал, этот персонаж живет с недоверием к властям и непреклонным желанием раскрыть правду и очистить свое имя.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Выращено волками.",
       "pairedValue": "Этот персонаж, потерявшийся в детстве в дикой местности и воспитанный волками, обладает исключительными инстинктами выживания, но испытывает трудности в общении с людьми и в соблюдении общественных норм.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Тайно королевский.",
       "pairedValue": "Они не знали, что этот персонаж рос под тайным присмотром верных защитников после того, как в результате переворота была свергнута их королевская семья, и в конечном итоге узнал о своем происхождении и восстановил свою идентичность.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Неудача ученика.",
       "pairedValue": "Не сумев спасти своего наставника от трагической судьбы, этот персонаж испытывает глубокое чувство вины и неполноценности, что побуждает его стать сильнее, чтобы предотвратить подобные трагедии.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Соперничество между детьми.",
       "pairedValue": "Этот персонаж, находящийся в состоянии ожесточенного соперничества со своим братом или сестрой, которые всегда затмевали его, постоянно ищет признания и борется с чувствами ревности и несостоятельности.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Моральный кризис наемника.",
       "pairedValue": "Когда-то этот персонаж был безжалостным наемником, движимым исключительно жаждой наживы, но после провала миссии он пережил моральный кризис, и теперь ищет искупления и смысла жизни через подвиги.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Хранитель Тайн.",
       "pairedValue": "С юных лет ему поручено охранять важные секреты, и теперь этот персонаж живет в постоянной опасности и изоляции, не желая доверять другим и будучи обремененным огромной ответственностью.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Цирк-беглец.",
       "pairedValue": "Сбежав из неблагополучной семьи, чтобы присоединиться к бродячему цирку, этот персонаж нашел чувство семьи среди артистов, но все еще несет в себе шрамы и неуверенность из своего тяжелого прошлого.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одержимость ученого.",
       "pairedValue": "Поглощенный навязчивой идеей получения знаний или поиска потерянного артефакта, этот персонаж из-за своих неустанных амбиций изолирует себя от общества, что приводит к жертвам и сожалениям на пути к своей цели.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Клятва защитника.",
       "pairedValue": "Став свидетелем трагической утраты в юности, этот персонаж дал торжественную клятву защищать других, движимый глубоко укоренившимся чувством вины и непоколебимым чувством долга.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изгнанный Мистик.",
       "pairedValue": "Изгнанный из своей родины из-за непонятых или пугающих мистических способностей, этот персонаж ищет место, где он сможет чувствовать себя комфортно, пытаясь контролировать свои силы и скрываясь от преследований.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Сирота войны.",
       "pairedValue": "Этот персонаж, осиротевший из-за войны, вырос в одиночестве, пережив насилие, развив в себе стойкость, независимость и решимость не допустить, чтобы другие постигла та же участь.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Жертва, ставшая мстителем.",
       "pairedValue": "Пережив травматическое нападение, этот персонаж стал мстителем, решившим защищать других, втайне движимый личной местью и неразрешенной травмой.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Опозоренный рыцарь.",
       "pairedValue": "Этот персонаж, некогда прославленный воин, был несправедливо лишен титула и чести, и теперь он путешествует анонимно в поисках искупления и доказывает свою ценность благородными поступками.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Давление Prodigy.",
       "pairedValue": "Вундеркинд, выросший под огромным давлением и ожиданиями, борется с перфекционизмом и неуверенностью в себе, тайно мечтая о жизни, свободной от требований своего исключительного таланта.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бывший глава шпионской сети.",
       "pairedValue": "Выйдя на пенсию после многих лет работы главным шпионом могущественного королевства, этот персонаж живет под постоянной угрозой возмездия, его преследуют тайны, которые он хранит, и союзы, которые он предал.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Преследуемый обещанием.",
       "pairedValue": "Этот персонаж дал торжественное обещание у смертного одра любимого человека, посвятив свою жизнь его исполнению, отягощенный постоянными напоминаниями о том, что было утрачено.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наследница в бегах.",
       "pairedValue": "Будучи наследницей, вынужденной скрываться после покушения, эта героиня принимает ложную личность, постоянно преследуемая страхом разоблачения и предательства.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Неохотный провидец.",
       "pairedValue": "Этот персонаж, наделенный даром — или проклятием — видеть будущее с детства, всю свою жизнь пытался предотвратить трагедию, становясь все более изолированным под тяжестью своих знаний.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Сбежавший гладиатор.",
       "pairedValue": "Избежав плена в качестве гладиатора, этот персонаж борется за свободу, преследуемый насилием и недоверием к другим, медленно стремясь к искуплению и миру.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ученик алхимика.",
       "pairedValue": "Когда-то этот персонаж был учеником алхимика, который таинственно исчез, и посвятил свою жизнь раскрытию судьбы своего наставника, по пути обнаруживая темные секреты и опасных врагов.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Уличный мальчишка, ставший героем.",
       "pairedValue": "Выросший на опасных городских улицах, этот персонаж с юных лет научился находчивости и стойкости, движимый амбициями подняться над своим прошлым и защитить других от подобных трудностей.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бремя путешественника во времени.",
       "pairedValue": "Путешественник во времени, обремененный непредвиденными последствиями своих путешествий, борется с чувством вины, постоянно балансируя между желанием исправить ошибки и страхом причинить еще больший вред.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Благородный ренегат.",
       "pairedValue": "Родившись в высшем обществе, этот персонаж восстал против ожиданий семьи, выбрав вместо этого жизнь, полную приключений, опасностей и независимости, чем заслужил как восхищение, так и презрение окружающих.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Воин-пацифист.",
       "pairedValue": "Воспитанный в культуре войны, этот персонаж выбрал путь мира, несмотря на исключительные боевые навыки, борясь с внутренними конфликтами и внешним давлением, заставляющим его отказаться от своих пацифистских убеждений.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Неудавшийся защитник.",
       "pairedValue": "Получив задание защитить человека, который трагически погиб, этот персонаж теперь испытывает глубокую вину и ищет искупления, постоянно сражаясь с внутренними демонами и страхом неудачи.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изгнанный за любовь.",
       "pairedValue": "Этот персонаж был изгнан из своего сообщества за то, что выбрал запретную любовь, и теперь живет как изгой, стойкий, но жаждущий принятия и примирения.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наследие Всадника Дракона.",
       "pairedValue": "Этот персонаж, родившийся в роду легендарных наездников драконов, сталкивается с огромными ожиданиями и рисками, преследуемый славой своих предков и одновременно ищущий собственную индивидуальность и предназначение.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Беглый королевский советник.",
       "pairedValue": "Этот персонаж, бывший доверенным советником королевской семьи, бежал после того, как узнал опасные политические секреты, вынужденный скрываться и движимый неустанным стремлением к справедливости.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Переживший чуму.",
       "pairedValue": "Пережив опустошительную чуму, уничтожившую их общину, этот персонаж несет на себе как физические, так и эмоциональные шрамы, движимый решимостью восстановить свою жизнь и помочь другим, кто понес подобную утрату.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Опальный ученый.",
       "pairedValue": "Когда-то этот персонаж пользовался уважением в академических кругах, но его репутация была испорчена ложными обвинениями. Теперь он тихо работает над тем, чтобы очистить свое имя и вновь обрести страсть к знаниям.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бывший убийца.",
       "pairedValue": "Оставив карьеру наемного убийцы, этот персонаж живет под постоянной угрозой со стороны своих бывших работодателей, стремясь построить мирную жизнь, несмотря на свое жестокое прошлое.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Забытый Спаситель.",
       "pairedValue": "Герой, который когда-то спас королевство, но был намеренно стерт из истории, этот персонаж живет анонимно, тайно неся горечь предательства и тяжесть непризнанной жертвы.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Секрет посла.",
       "pairedValue": "Выступая в качестве посла, этот персонаж тайно шпионит в пользу конкурирующего королевства, постоянно балансируя между преданностью, опасностью и обманом, преследуемый страхом разоблачения.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бывший заключённый.",
       "pairedValue": "Проведя годы в несправедливом заключении, этот персонаж пытается реинтегрироваться в общество, борясь с гневом, недоверием и травмами, одновременно стремясь к справедливости и личному миру.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Проклятие целителя.",
       "pairedValue": "Рожденный со способностью исцелять других за счет собственной жизненной энергии, этот персонаж живет осторожно, осознавая, что каждое исцеление сокращает его собственную продолжительность жизни, но при этом вынужден помогать нуждающимся.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Потерянная команда исследователя.",
       "pairedValue": "Бывший исследователь, которого преследует потеря своей команды в неудачной экспедиции, посвящает свою жизнь поиску ответов, искуплению и, возможно, выживанию вопреки всем обстоятельствам.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Покинутый богами.",
       "pairedValue": "Избранный, а затем покинутый богами, этот персонаж борется с глубоко укоренившимся гневом, потерей веры и экзистенциальным кризисом, ища смысл и цель за пределами божественного влияния.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Охотник, ставший защитником.",
       "pairedValue": "Изначально воспитанный для охоты на сверхъестественных существ, этот персонаж изменил свое мировоззрение после того, как узнал скрытые истины, и стал защитником тех самых существ, которых он когда-то боялся.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Потерянная любовь изобретателя.",
       "pairedValue": "Изобретатель, потерявший любимого человека из-за несчастного случая, связанного с его собственным творением, испытывает глубокую скорбь и чувство вины, направляя свои эмоции на создание изобретений, чтобы предотвратить дальнейшие трагедии.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Дипломат в изгнании.",
       "pairedValue": "Этот персонаж, некогда умелый дипломат, был ложно обвинен и сослан за преступление, которого не совершал, и теперь вынужден выживать на незнакомых территориях, тайно работая над выявлением истинных виновников.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Призрачная музыка барда.",
       "pairedValue": "Странствующий бард, чья музыка вызывает у слушателей яркие, часто болезненные воспоминания, борется с изоляцией и чувством вины, постоянно обсуждая этическую сторону своего мощного таланта.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Вырос среди мятежников.",
       "pairedValue": "Этот персонаж родился в группе повстанцев, борющихся с репрессивным режимом, и вырос, наблюдая насилие и борьбу, что сформировало их несгибаемый дух и стремление к свободе и справедливости.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Хранитель Запретных Знаний.",
       "pairedValue": "С детства ему было поручено охранять запрещенные тексты и артефакты, и теперь этот персонаж живет осторожно, обремененный тайнами, способными изменить мир.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Нежелательное пророчество.",
       "pairedValue": "Отмеченный с рождения пророчеством, предсказывающим гибель или разрушение, этот персонаж борется с изоляцией и неуверенностью в себе, опасаясь, что его судьба может быть неотвратима.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Падший идол.",
       "pairedValue": "Этот персонаж, некогда прославленный герой, которым восхищались многие, впал в немилость после трагической ошибки и теперь живет в стыде, тихо работая над искуплением и принятием.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Тайный свидетель.",
       "pairedValue": "Став в детстве свидетелем того, как могущественная личность совершила ужасный поступок, этот персонаж был вынужден скрываться, рос осторожным и осторожным, но в один прекрасный день решил раскрыть правду.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ученый в изгнании.",
       "pairedValue": "Когда-то этот персонаж был уважаемым ученым, изгнанным за спорные открытия, а теперь скитается между королевствами, тайно продолжая свои исследования, несмотря на угрозы со стороны властей.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Получеловек-изгой.",
       "pairedValue": "Рожденный наполовину человеком, наполовину магическим существом, этот персонаж сталкивается с предрассудками с обеих сторон, постоянно стремясь к чувству идентичности, принадлежности и принятия.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Убийца милосердия.",
       "pairedValue": "Первоначально ему было поручено вершить правосудие, милосердно заканчивая жизни людей, но теперь этот персонаж борется с моралью из-за своих прошлых поступков, ища искупления и смысла за пределами насилия.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ошибка навигатора.",
       "pairedValue": "Будучи опытным штурманом, который сбил экспедицию с пути, что привело к трагедии, этот персонаж испытывает глубокое чувство вины и ищет искупления, помогая другим безопасно совершать опасные путешествия.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Тронутый тенью.",
       "pairedValue": "Этот персонаж, столкнувшийся с темной магией в юном возрасте, обладает странными, неконтролируемыми способностями, живет в страхе причинить вред другим и отчаянно ищет лекарство.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Неохотный революционер.",
       "pairedValue": "Изначально равнодушный к социальной несправедливости, личная трагедия заставляет этого персонажа поневоле стать лидером движения, борясь с внутренними сомнениями и внешними опасностями.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Сожаление бывшего капитана.",
       "pairedValue": "Бывший капитан, чья команда погибла под его командованием, теперь живет тихо, преследуемый чувством вины и воспоминаниями, тайно ища шанс искупить свою вину через героические поступки.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Тайно проклятый.",
       "pairedValue": "Этот персонаж, тайно проклятый бессмертием, на протяжении веков становится свидетелем бесчисленных трагедий и перемен, испытывая глубокое одиночество и желание освободиться от своего проклятия.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Верность Ни одному.",
       "pairedValue": "Этот персонаж, которого много раз предали союзники, теперь никому не доверяет, постоянно находится в разъездах и полагаясь исключительно на себя, борясь с глубокой изоляцией и подозрительностью по отношению к другим.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Королевский беженец.",
       "pairedValue": "Вынужденный бежать из родной страны после жестокого переворота, этот персонаж вырастает под видом простолюдина, решив вернуть себе законное место, скрывая при этом свою личность от врагов.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бывший военный стратег.",
       "pairedValue": "Когда-то этот персонаж был блестящим стратегом, отказавшимся от войны, осознав ее ужасы на собственном опыте. Теперь он тайно использует свои тактические навыки, чтобы подорвать репрессивные силы.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Невидимый Защитник.",
       "pairedValue": "После тайного спасения влиятельного человека от покушения этот персонаж живет в тени, наблюдая за другими издалека, скрывая их истинную личность и принесенные жертвы.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Скрытый гений.",
       "pairedValue": "Персонаж, тайно обладающий необычайным интеллектом, но скрывающий это из-за страха эксплуатации или недоверия со стороны общества, тихо манипулирующий событиями из-за кулис.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Искупление пирата.",
       "pairedValue": "Этот персонаж, бывший внушающий страх пират, печально известный своей жестокостью, ищет искупления, тайно помогая нуждающимся, преследуемый воспоминаниями о прошлом насилии и предательстве.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Дитя запретной любви.",
       "pairedValue": "Рожденный от запретного союза, этот персонаж рос в атмосфере секретности и стыда, борясь со своей идентичностью и желанием быть принятым, и в конце концов узнав правду о своем происхождении.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бремя дезертира.",
       "pairedValue": "Этот персонаж — солдат, дезертировавший во время войны, преследуемый чувством вины за то, что бросил товарищей, и тихо живущий под чужой личностью, стремящийся искупить свою вину посредством самопожертвования и подвигов.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Преследуемый провидец.",
       "pairedValue": "Этот персонаж, наделенный видениями, которые постоянно сбываются, живет под гнётом могущественных существ, стремящихся воспользоваться его даром, из-за чего ему приходится постоянно скрываться и находиться в изоляции.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Отвергнутый Избранный.",
       "pairedValue": "Первоначально считалось, что этот персонаж является избранным героем, которому было предсказано спасти мир, но позже его отвергли как ложного спасителя, борющегося с потерей цели и идентичности.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Проклятый исполнитель.",
       "pairedValue": "Артист, чей талант приносит несчастья своей публике, борется с одиночеством и чувством вины, постоянно путешествует, чтобы не причинить вреда другим, и отчаянно ищет лекарство.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ученик колдуна.",
       "pairedValue": "Этот персонаж, ученик могущественного мага, был предан и проклят своим наставником, и теперь скитается в поисках мести или искупления, скрываясь от темных сил.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ложно коронованный.",
       "pairedValue": "Этот персонаж, коронованный из-за ошибочной идентификации, сталкивается с обязанностями лидера, моральными дилеммами и, в конечном итоге, с раскрытием своего обмана.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бывший лидер культа.",
       "pairedValue": "Бывший харизматичный лидер, сбежавший из своего опасного культа, теперь стремится расколоть подобные группы, преследуемый чувством вины и воспоминаниями о манипуляциях.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Замолчавший Бард.",
       "pairedValue": "Когда-то этот персонаж был знаменитым бардом, чей голос был магическим образом утрачен, а теперь общается только посредством письма и музыки, страстно желая вернуть то, что было утрачено.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изгнанный оборотень.",
       "pairedValue": "Изгнанный из своей родины за неконтролируемую способность менять облик, этот персонаж изо всех сил пытается контролировать свою личность, стремясь к принятию и пониманию.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изоляция изобретателя.",
       "pairedValue": "Гениальный изобретатель, чьи творения непреднамеренно навредили другим, этот персонаж изолирует себя из-за страха и чувства вины, тайно стремясь исправить свои ошибки.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изгнанный Хранитель Драконов.",
       "pairedValue": "Когда-то этот персонаж отвечал за охрану святилища драконов, но затем был ложно обвинен в его разрушении. Теперь он живет изгоем и тайно ищет правду о трагедии.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Невольный наследник.",
       "pairedValue": "Этот персонаж, рожденный наследником могущественной империи, бежал от ответственности и ожиданий семьи, скрываясь и стремясь к жизни, свободной от манипуляций и контроля.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Призрачный археолог.",
       "pairedValue": "Случайно освободив опасное сверхъестественное существо во время раскопок, этот персонаж живет с постоянным чувством вины и движим необходимостью исправить нанесенный ущерб.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Исправившийся вор.",
       "pairedValue": "Этот персонаж, бывший ранее искусным вором, известным своими невероятными ограблениями, отказался от своего криминального прошлого после предательства и решил начать все сначала, скрываясь от бывших сообщников.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Маг со шрамом.",
       "pairedValue": "Этот персонаж был травмирован своими собственными неконтролируемыми магическими силами в детстве, что вызвало страх и изоляцию; теперь он осторожно использует свои способности, чтобы защитить других.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Секретный эксперимент.",
       "pairedValue": "Созданный в ходе секретного эксперимента, этот персонаж сбежал из плена, чтобы исследовать внешний мир, пытаясь понять человечество и свое собственное предназначение, избегая при этом плена.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Забытый генерал.",
       "pairedValue": "Знаменитый военный генерал, считавшийся погибшим после битвы, тайно выжил, предпочтя изгнание возвращению героя, обремененный горем и сожалением о потерянных солдатах.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Магически связанный слуга.",
       "pairedValue": "Связанный в юном возрасте магическим контрактом на служение жестокому хозяину, этот персонаж тайно ищет свободы, тщательно планируя побег и одновременно преодолевая эмоциональные и физические трудности.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Беглый целитель.",
       "pairedValue": "Когда-то этот персонаж почитался за свои необыкновенные целительные способности, но затем был обвинен в колдовстве и изгнан из своей общины. Теперь он тайно путешествует, чтобы избежать преследований.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Неохотный охотник на демонов.",
       "pairedValue": "Пережив атаку демонов, унесшую жизни его семьи, этот персонаж стал невольным охотником на демонов, движимый жаждой мести, но в то же время испытывая моральные сомнения относительно своего насильственного пути.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Дезертировавший солдат.",
       "pairedValue": "Этот персонаж, ранее лояльный жестокому режиму, дезертировал, став свидетелем зверств, и теперь посвятил себя уничтожению той самой империи, которой он когда-то служил.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изгнанный советник.",
       "pairedValue": "Этот персонаж, королевский советник, изгнанный после обвинения в заговоре, ищет искупления и восстановления, тайно помогая своему королевству издалека.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наследник Запретного Знания.",
       "pairedValue": "Этот персонаж, родившийся в семье, которой было поручено охранять запретные знания, борется с огромной ответственностью, искушениями и постоянной угрозой коррупции или безумия.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Вампир поневоле.",
       "pairedValue": "Обращенный против своей воли в вампира, этот персонаж ежедневно борется со своей чудовищной природой, решив сохранить свою человечность, несмотря на свои темные желания.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Скрытый выживший.",
       "pairedValue": "Этот персонаж, которого считали погибшим после катастрофического события, тайно выживал самостоятельно, терпя изоляцию и пытаясь воссоединиться с миром, который считает его потерянным навсегда.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Проклятый художник.",
       "pairedValue": "Художник, чьи картины обладают способностью изменять реальность, трагически обнаруживает непредвиденные последствия своей работы, обремененный чувством вины и не решаясь снова использовать свои способности.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изгой-моряк.",
       "pairedValue": "Изгнанный со своего родного острова за нарушение священных традиций, этот персонаж теперь бороздит моря, вечно жаждая признания и примирения со своим народом.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Тайно одаренный шпион.",
       "pairedValue": "Этот персонаж, рожденный с телепатическими способностями, с детства обучался шпионажу, ведя двойную жизнь и сталкиваясь с этическими дилеммами, вызванными вторжением в чужие разумы.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Бывший укротитель монстров.",
       "pairedValue": "Когда-то этот персонаж был уважаемым укротителем монстров, от которого в результате трагедии отвернулись звери. Теперь он живет тихо, тайно преследуемый предательством и утратой, и не желает доверять кому-либо снова.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Защитник обвиняемых.",
       "pairedValue": "Бывший судья, который вынес ложный приговор невиновным людям из-за подтасованных доказательств, теперь посвящает свою жизнь защите несправедливо обвиненных, стремясь к искуплению.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Заключенный страж.",
       "pairedValue": "Этот персонаж, несправедливо заключенный в тюрьму во время охраны священного артефакта, борется с доверием и предательством, тайно надеясь вернуть свою честь и выполнить свой долг.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Отравленный дипломат.",
       "pairedValue": "Дипломат, переживший покушение с помощью яда, теперь живет в постоянном страхе, борясь с паранойей и недоверием, одновременно раскрывая более глубокие заговоры.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Ложный Избранный.",
       "pairedValue": "Этот персонаж, которого многие считают спасителем, втайне знает, что его личность основана на лжи, и сталкивается с огромным давлением, чтобы поддерживать этот образ и одновременно искать выход.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Хранитель потерянных душ.",
       "pairedValue": "Проклятый охранять потерянные души в лимбе, этот персонаж сталкивается с вечным одиночеством и печалью, тайно стремясь к освобождению и искуплению, помогая другим обрести покой.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Блудный Маг.",
       "pairedValue": "Изгнанный из магической академии из-за запрещенных экспериментов, этот персонаж скитается, тайно совершенствуя свое искусство, скрываясь от властей.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Изгнанный эмиссар.",
       "pairedValue": "Этот персонаж, бывший эмиссар, изгнанный после провала мирных переговоров, путешествует по чужим землям, тайно работая над восстановлением мира и собственной чести.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Единственный выживший из Ордена.",
       "pairedValue": "Этот персонаж — последний выживший член древнего ордена, уничтоженного предательством. Он живет скрытно, стремясь отомстить за своих погибших товарищей и сохранить свое наследие.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Разочарованный пророк.",
       "pairedValue": "Когда-то этот персонаж почитался за пророческие видения, направлявшие королевства, но теперь сомневается в своем даре, живет тихо и преследуется последствиями прошлых пророчеств, неправильно понятых или использованных.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Скрытый лидер повстанцев.",
       "pairedValue": "Тайно возглавляя восстание против тирании внутри рядов врага, этот персонаж живет жизнью постоянного обмана, обремененный изоляцией и страхом разоблачения.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Защитник стал изгоем.",
       "pairedValue": "Бывший защитник своей родины, ложно обвиненный в измене, этот персонаж выживает в изгнании, постоянно сражаясь с внутренними демонами и внешними угрозами, одновременно жаждая оправдания.",
-      "weight": 0
+      "weight": 1
     }
   ],
   "clothing": [
     {
       "value": "Одет персонаж как принято у моряков.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда этого персонажа давно видала лучшие времена.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда на персонаже ладно скроена по фигуре.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж довольно просто.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже выходной наряд.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж очень добротно.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет по-купечески.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда явно по последней моде.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Поверх повседневной одежды персонажа надет дорожный плащ с капюшоном.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Полинялая и выцветшая одежда довершает его образ.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж очень богато.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж просто не броско и практично.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет просто.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж так как обычно одеваются пастухи.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж как принято у моряков.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж по армейскому образцу.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Хотя одежду персонажа трудно назвать богатой, он определенно производит впечатление щеголя.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Максильно раздет.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж в самый обычный повседневный наряд.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже грубая льняная одежда с аккуратными заплатами.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Поверх рубахи надет потёртый кожаный жилет.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже длинное одеяние с широкими рукавами.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда персонажа украшена затейливой вышивкой.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже плотный шерстяной наряд с меховой отделкой.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж легко, словно не замечает холода.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда персонажа явно с чужого плеча.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наряд персонажа тесен и заметно стесняет движения.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже кожаный передник со следами давней работы.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда персонажа покрыта дорожной пылью.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Подол и края рукавов испачканы засохшей грязью.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На одежде персонажа виднеются подпалины.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наряд персонажа сшит из тканей разных цветов.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж во всё чёрное, без единого украшения.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже светлое одеяние с широким тканым поясом.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На поясе персонажа висит множество мешочков и небольших сумок.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда персонажа застёгнута на необычные костяные пуговицы.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Плащ персонажа скреплён массивной металлической брошью.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже короткая куртка со множеством карманов.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда персонажа перехвачена ремнями и кожаными завязками.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наряд персонажа украшен бахромой и мелкими бусинами.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже строгая ливрея с вышитым гербом.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Поверх простой рубахи надета кольчуга.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже стёганый доспех со следами починки.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда персонажа обшита небольшими металлическими пластинами.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Наряд персонажа расшит блестящими нитями и дешёвыми стекляшками.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже просторная одежда из небелёной ткани.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одет персонаж в старомодный наряд с высоким воротником.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "Одежда персонажа украшена перьями и меховыми хвостами.",
-      "weight": 0
+      "weight": 1
     },
     {
       "value": "На персонаже непромокаемый плащ из промасленной ткани.",
-      "weight": 0
+      "weight": 1
     }
   ],
   "gender": [

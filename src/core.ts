@@ -25,18 +25,18 @@ export function genderChoices(tables: Tables): Choice[] {
 export function genderLabel(tables: Tables, gender: Gender): string | undefined {
   return genderChoices(tables).find(item => item.gender === gender)?.value;
 }
+export function choiceGender(item: Choice, parent?: Choice): Gender | undefined {
+  return parent?.gender || item.gender;
+}
 export function choicePercent(items: Choice[], item: Choice, parent?: Choice): number {
-  const gender = item.gender ?? parent?.gender;
-  return weightPercent(gender ? items.filter(entry => !(entry.gender ?? parent?.gender) || (entry.gender ?? parent?.gender) === gender) : items, item);
+  const gender = choiceGender(item, parent);
+  return weightPercent(gender ? items.filter(entry => !choiceGender(entry, parent) || choiceGender(entry, parent) === gender) : items, item);
 }
 export function clearGender(tables: Tables, gender: Gender): void {
   for (const key of genderFields) {
     for (const item of tables[key] ?? []) {
       if (item.gender === gender) delete item.gender;
-      for (const child of item.children ?? []) if (child.gender === gender) {
-        if (item.gender) child.gender = "";
-        else delete child.gender;
-      }
+      for (const child of item.children ?? []) if (child.gender === gender) delete child.gender;
     }
   }
 }
@@ -59,6 +59,7 @@ export function prepareTables(tables: Tables): void {
         for (const child of item.children) {
           delete child.children; delete child.subtableName;
           if (genderFields.includes(key) && child.gender && !genders.has(child.gender)) delete child.gender;
+          if (genderFields.includes(key) && item.gender) child.gender = item.gender;
         }
         if (item.children.length) normalize(item.children);
         else if (!genderFields.includes(key)) { delete item.children; delete item.subtableName; }
@@ -87,16 +88,16 @@ export function findChoice(tables: Tables, key: string, value: string): { item: 
 export function valueGender(tables: Tables, key: string, value: string): Gender | undefined {
   if (key === "gender") return genderChoices(tables).find(item => item.value === value)?.gender;
   const found = findChoice(tables, key, value);
-  return (found?.item.gender ?? found?.parent?.gender) || undefined;
+  return found ? choiceGender(found.item, found.parent) || undefined : undefined;
 }
 export function currentGender(tables: Tables, values: Values): Gender | undefined {
   return values.gender ? valueGender(tables, "gender", values.gender) : valueGender(tables, "gender-age", values["gender-age"]);
 }
-export function pickForGender(items: Choice[], gender: Gender | undefined, random = Math.random, excludedValue?: string): Choice | undefined {
+export function pickForGender(items: Choice[], gender: Gender | undefined, random = Math.random, excludedValue?: string, inheritGender = true): Choice | undefined {
   const eligible = items.flatMap(parent => {
     if (!parent.value.trim()) return [];
     if (parent.children) {
-      const children = parent.children.filter(child => child.value.trim() && (!gender || !(child.gender ?? parent.gender) || (child.gender ?? parent.gender) === gender));
+      const children = parent.children.filter(child => child.value.trim() && (!gender || !choiceGender(child, parent) || choiceGender(child, parent) === gender));
       return children.some(child => child.weight > 0) ? [{ ...parent, children }] : [];
     }
     return !gender || !parent.gender || parent.gender === gender ? [parent] : [];
@@ -111,7 +112,7 @@ export function pickForGender(items: Choice[], gender: Gender | undefined, rando
   });
   const parent = singleGenderGroup ? alternatives[0] : pick(alternatives, random);
   const child = parent?.children?.length ? pick(parent.children, random) : parent;
-  return child && { ...child, gender: child.gender ?? parent?.gender };
+  return child && { ...child, gender: inheritGender ? choiceGender(child, parent) : child.gender ?? parent?.gender };
 }
 export function generate(tables: Tables, key: string, values: Values = {}, random = Math.random, excludeCurrent = true): Values {
   if (key === "backstory-text") key = "backstory-title";
@@ -121,7 +122,7 @@ export function generate(tables: Tables, key: string, values: Values = {}, rando
     const alternatives = genders.filter(item => item.gender !== genderNow && item.value !== values.gender);
     const selected = excludeCurrent && genderNow
       ? pick(alternatives, random)
-      : pickForGender(tables.gender ?? defaultGenders, undefined, random);
+      : pickForGender(tables.gender ?? defaultGenders, undefined, random, undefined, false);
     const selectedGender = selected?.gender;
     if (!selectedGender || !selected) return {};
     const age = pickForGender(tables["gender-age"] ?? [], selectedGender, random, excludeCurrent ? values["gender-age"] : undefined)
@@ -138,7 +139,7 @@ export function generate(tables: Tables, key: string, values: Values = {}, rando
   }
   if (genderFields.includes(key) && (values.gender || values["gender-age"]) && !genderNow) return {};
   const needsGender = genderFields.includes(key);
-  const selectedGender = needsGender ? genderNow ?? pickForGender(tables.gender ?? defaultGenders, undefined, random)?.gender : undefined;
+  const selectedGender = needsGender ? genderNow ?? pickForGender(tables.gender ?? defaultGenders, undefined, random, undefined, false)?.gender : undefined;
   if (needsGender && !selectedGender) return {};
   const selected = pickForGender(tables[key] ?? [], selectedGender, random, excludeCurrent ? values[key] : undefined);
   if (!selected) return {};
@@ -165,7 +166,7 @@ export function generateAll(tables: Tables, values: Values = {}, onlyMissing = f
     if (gender) updates.gender = genderLabel(tables, gender) ?? "";
   }
   if (!onlyMissing || (!values.gender && !updates.gender)) {
-    const gender = pickForGender(tables.gender ?? defaultGenders, undefined);
+    const gender = pickForGender(tables.gender ?? defaultGenders, undefined, Math.random, undefined, false);
     if (gender) updates.gender = gender.value;
   }
   // Pick gender before name for a fresh card or a full reroll.
