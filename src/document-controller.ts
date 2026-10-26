@@ -6,7 +6,7 @@ import { HistoryChange, GenerationHistoryStore } from "./generation-history";
 import { isHTMLElement, registerDocumentEvents } from "./window-events";
 import { isCardLocked, lockedNotice } from "./card-lock";
 
-const afterEditorUpdate = () => new Promise<void>(resolve => setTimeout(resolve, 0));
+const afterEditorUpdate = () => new Promise<void>(resolve => window.setTimeout(resolve, 0));
 type DocumentOptions = {
   app(): App;
   tables(): Tables;

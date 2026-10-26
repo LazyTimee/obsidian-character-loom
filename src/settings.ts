@@ -1,4 +1,5 @@
 import { App, Modal, Notice, PluginSettingTab, Setting, setIcon } from "obsidian";
+import type { SettingDefinitionItem } from "obsidian";
 import type CharacterLoom from "./main";
 import { Choice, fieldLabels, fieldOrder, genderFields } from "./data";
 import { clearGender, genderChoices, setWeight } from "./core";
@@ -32,23 +33,39 @@ export class CloomSettingTab extends PluginSettingTab {
 
   constructor(app: App, private plugin: CharacterLoom) { super(app, plugin); }
 
-  display(): void {
+  getSettingDefinitions(): SettingDefinitionItem[] {
+    return [{
+      name: "Таблицы генератора персонажей",
+      desc: "Редактирование вариантов и весов, импорт, экспорт и восстановление таблиц.",
+      aliases: Object.values(fieldLabels),
+      render: setting => {
+        setting.settingEl.addClass("cloom-settings-host");
+        this.renderSettings(setting.settingEl);
+        return () => this.disposeView();
+      }
+    }];
+  }
+
+  // Fallback for Obsidian versions before 1.13.0.
+  display(): void { this.renderSettings(this.containerEl); }
+
+  private renderSettings(container: HTMLElement): void {
     this.resizeObserver?.disconnect();
     this.disposeLists();
-    this.containerEl.empty();
+    container.empty();
     this.containerEl.addClass("cloom-settings");
-    this.containerEl.createEl("h2", { text: "Character Loom" });
-    this.containerEl.createEl("p", { cls: "cloom-settings-description", text: "Здесь можно редактировать варианты для генерации персонажей. Таблицы общие для всех заметок текущего хранилища. Изменения сохраняются автоматически. Чтобы создать генератор в заметке, вызовите в палитре команд «Вставить генератор после текущего блока»." });
-    this.renderTransferControls();
+    container.createEl("h2", { cls: "cloom-settings-title", text: "Character Loom" });
+    container.createEl("p", { cls: "cloom-settings-description", text: "Здесь можно редактировать варианты для генерации персонажей. Таблицы общие для всех заметок текущего хранилища. Изменения сохраняются автоматически. Чтобы создать генератор в заметке, вызовите в палитре команд «Вставить генератор после текущего блока»." });
+    this.renderTransferControls(container);
     if (this.plugin.settingsErrors.length) {
-      this.containerEl.createEl("p", { text: "В файле настроек генератора обнаружены ошибки. Сохранение таблиц заблокировано, исходный файл не изменён. Исправьте указанные записи вручную и перезапустите плагин или восстановите данные по умолчанию. Индексы записей начинаются с 0." });
-      for (const error of this.plugin.settingsErrors) this.containerEl.createEl("p", { text: error });
+      container.createEl("p", { text: "В файле настроек генератора обнаружены ошибки. Сохранение таблиц заблокировано, исходный файл не изменён. Исправьте указанные записи вручную и перезапустите плагин или восстановите данные по умолчанию. Индексы записей начинаются с 0." });
+      for (const error of this.plugin.settingsErrors) container.createEl("p", { text: error });
       return;
     }
-    this.containerEl.createEl("p", { cls: "cloom-settings-description", text: "Вес — целое число от 0, которое определяет частоту выпадения варианта. Например, веса 1, 1 и 2 дают шансы 25%, 25% и 50%. Вес 0 исключает вариант из генерации." });
-    const search = this.containerEl.createEl("input", { cls: "cloom-settings-search", type: "search", attr: { placeholder: "Поиск вариантов по значению", "aria-label": "Поиск вариантов" } });
+    container.createEl("p", { cls: "cloom-settings-description", text: "Вес — целое число от 0, которое определяет частоту выпадения варианта. Например, веса 1, 1 и 2 дают шансы 25%, 25% и 50%. Вес 0 исключает вариант из генерации." });
+    const search = container.createEl("input", { cls: "cloom-settings-search", type: "search", attr: { placeholder: "Поиск вариантов по значению", "aria-label": "Поиск вариантов" } });
     search.value = this.searchQuery;
-    this.content = this.containerEl.createDiv({ cls: "cloom-settings-content" });
+    this.content = container.createDiv({ cls: "cloom-settings-content" });
     search.addEventListener("input", () => { this.searchQuery = search.value; this.renderContent(); });
     this.resizeObserver = new (elementWindow(this.containerEl).ResizeObserver)(entries => {
       const width = entries[0]?.contentRect.width ?? 0;
@@ -69,6 +86,14 @@ export class CloomSettingTab extends PluginSettingTab {
     void this.persist();
   }
 
+  private disposeView(): void {
+    this.resizeObserver?.disconnect();
+    this.disposeLists();
+    if (this.resizeFrame !== undefined) this.resizeWindow?.cancelAnimationFrame(this.resizeFrame);
+    this.resizeFrame = undefined;
+    this.pendingFields.clear();
+  }
+
   private choiceId(item: Choice): string {
     let id = this.ids.get(item);
     if (!id) { id = `choice-${++this.nextId}`; this.ids.set(item, id); }
@@ -82,8 +107,8 @@ export class CloomSettingTab extends PluginSettingTab {
     catch (error) { console.error("Character Loom settings", error); new Notice("Не удалось сохранить настройки Character Loom."); }
   }
 
-  private renderTransferControls(): void {
-    const section = this.containerEl.createEl("details", { cls: "cloom-table-transfer" });
+  private renderTransferControls(container: HTMLElement): void {
+    const section = container.createEl("details", { cls: "cloom-table-transfer" });
     section.open = this.transferOpen;
     section.addEventListener("toggle", () => { this.transferOpen = section.open; });
     section.createEl("summary", { text: "Импорт и экспорт таблиц" });
@@ -97,13 +122,15 @@ export class CloomSettingTab extends PluginSettingTab {
     download.addEventListener("click", () => { void this.downloadTables(); });
     this.transferStatus = section.createDiv({ cls: "cloom-transfer-status", attr: { role: "status", "aria-live": "polite" } });
     const reset = actions.createEl("button", { text: "Восстановить по умолчанию", cls: "cloom-restore-defaults", attr: { type: "button" } });
-    reset.addEventListener("click", async () => {
-      if (this.busy || !await new RestoreDefaultsModal(this.app).openAndWait()) return;
-      await this.transfer("Восстановление стандартных таблиц…", async () => {
-        await this.plugin.restoreDefaultSettings();
-        this.resetView();
-        new Notice("Стандартные таблицы записаны в файл настроек генератора.");
-      });
+    reset.addEventListener("click", () => { void this.restoreDefaults(); });
+  }
+
+  private async restoreDefaults(): Promise<void> {
+    if (this.busy || !await new RestoreDefaultsModal(this.app).openAndWait()) return;
+    await this.transfer("Восстановление стандартных таблиц…", async () => {
+      await this.plugin.restoreDefaultSettings();
+      this.resetView();
+      new Notice("Стандартные таблицы записаны в файл настроек генератора.");
     });
   }
 
@@ -116,7 +143,7 @@ export class CloomSettingTab extends PluginSettingTab {
     this.containerEl.inert = true;
     try {
       // Let the status paint before parsing or merging a large file.
-      await new Promise(resolve => setTimeout(resolve, 30));
+      await new Promise(resolve => elementWindow(this.containerEl).setTimeout(resolve, 30));
       await action();
     } catch (error) {
       console.error("Character Loom table transfer", error);
@@ -134,18 +161,19 @@ export class CloomSettingTab extends PluginSettingTab {
     this.drafts.clear();
     this.windows = new WeakMap();
     this.searchWindow = undefined;
-    this.display();
+    if (typeof this.update === "function") this.update();
+    else this.renderSettings(this.containerEl);
   }
 
   private chooseImport(key?: string): void {
     if (this.busy) return;
     const input = this.containerEl.createEl("input", { type: "file", attr: { accept: ".json,application/json", hidden: "" } });
     input.addEventListener("cancel", () => input.remove());
-    input.addEventListener("change", async () => {
+    input.addEventListener("change", () => {
       const file = input.files?.[0];
       input.remove();
       if (!file) return;
-      await this.transfer("Проверка и импорт таблиц…", async () => {
+      void this.transfer("Проверка и импорт таблиц…", async () => {
         const incoming = parseTableFile(await file.text());
         const result = mergeTables(this.plugin.settings.tables, incoming, key);
         await this.plugin.importTables(result.tables);
@@ -193,7 +221,7 @@ export class CloomSettingTab extends PluginSettingTab {
       if (!matches.length) results.createEl("p", { text: "Варианты не найдены." });
       else {
         if (this.searchWindow?.query !== query) this.searchWindow = { query, state: this.newWindow() };
-        this.renderVirtualList(results, matches, this.searchWindow!.state);
+        this.renderVirtualList(results, matches, this.searchWindow.state);
       }
     } else {
       for (const key of ["gender", "gender-age", "name", ...fieldOrder.filter(key => key !== "name" && key !== "gender-age")]) this.renderTable(this.content, key);
@@ -218,9 +246,9 @@ export class CloomSettingTab extends PluginSettingTab {
       this.resizeFrame = undefined;
       const visible = [...this.pendingFields].filter(field => field.isConnected && field.getClientRects().length);
       this.pendingFields.clear();
-      for (const field of visible) field.style.height = "auto";
+      for (const field of visible) field.setCssStyles({ height: "auto" });
       const heights = visible.map(field => field.scrollHeight + 2);
-      visible.forEach((field, index) => field.style.height = `${heights[index]}px`);
+      visible.forEach((field, index) => field.setCssStyles({ height: `${heights[index]}px` }));
     });
   }
 
@@ -310,7 +338,7 @@ export class CloomSettingTab extends PluginSettingTab {
   private createIconButton(container: HTMLElement, name: string, label: string, action: () => void | Promise<void>): HTMLButtonElement {
     const button = container.createEl("button", { cls: "cloom-setting-icon", attr: { type: "button", "aria-label": label, "data-tooltip-position": "top" } });
     setIcon(button, name);
-    button.addEventListener("click", async () => { await action(); });
+    button.addEventListener("click", () => { void action(); });
     return button;
   }
 
@@ -371,16 +399,16 @@ export class CloomSettingTab extends PluginSettingTab {
     const row: Row = { item, key, siblings, parent, el, name, percent };
     this.rows.push(row);
     name.addEventListener("input", () => { item.value = name.value.replace(/[\r\n]+/g, " "); this.resizeFields([name]); if (key === "gender") this.refreshGenders(); });
-    name.addEventListener("change", async () => { item.value = name.value.trim().replace(/[\r\n]+/g, " "); await this.persist(); });
-    weight.addEventListener("change", async () => {
+    name.addEventListener("change", () => { item.value = name.value.trim().replace(/[\r\n]+/g, " "); void this.persist(); });
+    weight.addEventListener("change", () => {
       const value = Number(weight.value);
       if (!weight.value.trim() || !Number.isSafeInteger(value) || value < 0) { weight.value = String(item.weight); new Notice("Введите целое неотрицательное число."); return; }
-      setWeight(siblings, item, value); this.refreshProbabilities(); await this.persist();
+      setWeight(siblings, item, value); this.refreshProbabilities(); void this.persist();
     });
     if (this.hasGender(key)) {
       const select = line.createEl("select", { cls: "cloom-gender-select", attr: { "aria-label": "Пол варианта" } });
       row.select = select;
-      select.addEventListener("change", async () => { item.gender = select.value; this.refreshProbabilities(); await this.persist(); });
+      select.addEventListener("change", () => { item.gender = select.value; this.refreshProbabilities(); void this.persist(); });
     }
     const controls = line.createDiv({ cls: "cloom-choice-actions" });
     this.createIconButton(controls, "plus", "Добавить вариант ниже", () => this.add(key, siblings, siblings.indexOf(item)));
@@ -423,7 +451,7 @@ export class CloomSettingTab extends PluginSettingTab {
       row.text.addEventListener("change", () => { void this.persist(); });
     }
     el.addEventListener("focusout", () => {
-      setTimeout(() => {
+      elementWindow(el).setTimeout(() => {
         if (!el.isConnected || el.contains(this.containerEl.ownerDocument.activeElement)) return;
         const active = this.rows.find(row => row.el.contains(this.containerEl.ownerDocument.activeElement));
         if (this.finishDraft(row)) { this.renderContent(active?.item); void this.persist(); }
@@ -445,10 +473,10 @@ class RestoreDefaultsModal extends Modal {
     this.open(); return result;
   }
   onOpen(): void {
-    this.contentEl.createEl("h3", { text: "Восстановить стандартные таблицы?" });
+    this.titleEl.setText("Восстановить стандартные таблицы?");
     this.contentEl.createEl("p", { text: "Все пользовательские значения и подтаблицы будут удалены и заменены стандартными данными, как при первом запуске плагина. Файл настроек генератора будет перезаписан. Это действие нельзя отменить. Перед восстановлением можно экспортировать таблицы." });
     new Setting(this.contentEl)
-      .addButton(button => button.setButtonText("Восстановить").setWarning().onClick(() => { this.confirmed = true; this.close(); }))
+      .addButton(button => button.setButtonText("Восстановить").setDestructive().onClick(() => { this.confirmed = true; this.close(); }))
       .addButton(button => button.setButtonText("Отмена").onClick(() => this.close()));
   }
   onClose(): void { this.resolve(this.confirmed); this.contentEl.empty(); }
@@ -463,10 +491,10 @@ class DeleteGenderModal extends Modal {
     this.open(); return result;
   }
   onOpen(): void {
-    this.contentEl.createEl("h3", { text: `Удалить пол «${this.value}»?` });
+    this.titleEl.setText(`Удалить пол «${this.value}»?`);
     this.contentEl.createEl("p", { text: "У связанных вариантов возраста и имён пол изменится на «Любой»." });
     new Setting(this.contentEl)
-      .addButton(button => button.setButtonText("Удалить").setWarning().onClick(() => { this.confirmed = true; this.close(); }))
+      .addButton(button => button.setButtonText("Удалить").setDestructive().onClick(() => { this.confirmed = true; this.close(); }))
       .addButton(button => button.setButtonText("Отмена").onClick(() => this.close()));
   }
   onClose(): void { this.resolve(this.confirmed); this.contentEl.empty(); }

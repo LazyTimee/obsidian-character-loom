@@ -8,7 +8,7 @@ export type HistoryChange = { source: string; rollback(): void };
 
 export class GenerationHistoryStore {
   private readonly records = new Map<string, GenerationHistory>();
-  private historyCleanupTimer?: ReturnType<typeof setTimeout>;
+  private historyCleanupTimer?: number;
 
   constructor(private workspace: () => Workspace) {}
 
@@ -50,8 +50,8 @@ export class GenerationHistoryStore {
   }
 
   private scheduleCleanup(): void {
-    if (this.historyCleanupTimer !== undefined) clearTimeout(this.historyCleanupTimer);
-    this.historyCleanupTimer = setTimeout(() => {
+    if (this.historyCleanupTimer !== undefined) window.clearTimeout(this.historyCleanupTimer);
+    this.historyCleanupTimer = window.setTimeout(() => {
       this.historyCleanupTimer = undefined;
       const openPaths = new Set<string>();
       this.workspace().iterateAllLeaves(leaf => {
@@ -86,7 +86,7 @@ export class GenerationHistoryStore {
       moveCards(oldPath, file.path);
     }));
     plugin.register(() => {
-      if (this.historyCleanupTimer !== undefined) clearTimeout(this.historyCleanupTimer);
+      if (this.historyCleanupTimer !== undefined) window.clearTimeout(this.historyCleanupTimer);
       this.records.clear();
     });
   }

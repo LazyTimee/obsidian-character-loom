@@ -65,7 +65,7 @@ export class VirtualSettingsList<T> {
     const el = this.container.createDiv({ cls: "cloom-choice-page" });
     const page: Page = { el, index, mounted: false, visible: false };
     this.pages.push(page);
-    el.style.minHeight = `${this.options.state.heights[index] ?? 510}px`;
+    el.setCssStyles({ minHeight: `${this.options.state.heights[index] ?? 510}px` });
     if (mount || this.options.state.mounted.has(index)) this.mount(page);
     this.intersections.observe(el);
   }
@@ -74,7 +74,7 @@ export class VirtualSettingsList<T> {
     if (this.disposed || page.mounted) return;
     page.mounted = true;
     this.options.state.mounted.add(page.index);
-    page.el.style.minHeight = "";
+    page.el.setCssStyles({ minHeight: "" });
     const start = page.index * SETTINGS_PAGE_SIZE;
     for (const item of this.options.items.slice(start, start + SETTINGS_PAGE_SIZE)) this.options.render(page.el, item);
     this.measurements.observe(page.el);
@@ -91,13 +91,13 @@ export class VirtualSettingsList<T> {
     this.measurements.unobserve(page.el);
     this.options.release(page.el);
     page.el.empty();
-    page.el.style.minHeight = `${measured}px`;
+    page.el.setCssStyles({ minHeight: `${measured}px` });
     page.mounted = false;
     this.options.state.mounted.delete(page.index);
   }
 
   private releaseUnfocused = (): void => {
-    setTimeout(() => {
+    elementWindow(this.container).setTimeout(() => {
       if (!this.disposed) for (const page of this.pages) if (!page.visible) this.unmount(page);
     }, 0);
   };

@@ -74,7 +74,11 @@ pnpm typecheck
 pnpm build
 ```
 
-The build creates `main.js` in the repository root. Install it together with `manifest.json` and `styles.css`.
+The production build creates `main.js`, `manifest.json`, and `styles.css` in `release/character-loom/`. Copy these three files into `.obsidian/plugins/character-loom/` in your vault. To copy them automatically during a build, set `CLOOM_PLUGIN_DIR` to that plugin folder.
+
+`pnpm dev` creates `main.js` in the repository root for development.
+
+Tests are kept locally and are not included in this repository. If the local test files are available, run `pnpm test`. Optional browser checks use `node scripts/test-settings-browser.mjs` and require Playwright and Chromium installed separately.
 
 Source code is in `src/`; default tables are in `src/default-tables.json`.
 

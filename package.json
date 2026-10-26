@@ -1,16 +1,16 @@
 {
   "name": "cloom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "private": true,
   "scripts": {
     "typecheck": "tsc --noEmit --project tsconfig.json",
+    "test": "node scripts/test.mjs",
     "dev": "node esbuild.config.mjs",
     "build": "tsc -noEmit && node esbuild.config.mjs production"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
-    "builtin-modules": "^3.3.0",
     "esbuild": "^0.23.0",
     "obsidian": "latest",
     "typescript": "^5.5.4"

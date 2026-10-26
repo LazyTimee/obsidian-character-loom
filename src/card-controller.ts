@@ -23,6 +23,7 @@ export class CardController {
   readonly cards = new Map<HTMLElement, CardTarget>();
   private busyTargets = new Set<string>();
   private editingVariant = false;
+  private highlightedBy = new WeakMap<HTMLElement, Set<HTMLElement>>();
 
   constructor(private options: CardOptions) {}
 
@@ -32,7 +33,7 @@ export class CardController {
       listen("copy", event => {
         const selection = doc.getSelection();
         if (!selection?.rangeCount || selection.isCollapsed || !event.clipboardData) return;
-        const content = doc.createElement("div");
+        const content = createDiv();
         for (let index = 0; index < selection.rangeCount; index++) {
           content.append(selection.getRangeAt(index).cloneContents());
         }
@@ -84,6 +85,8 @@ export class CardController {
     element.setAttribute("tabindex", "0");
     element.setAttribute("aria-haspopup", "dialog");
     element.setAttribute("title", "Редактировать");
+    const story = element.closest<HTMLElement>(".cloom-story-content");
+    if (story) this.highlightOnInteraction(element, [story]);
     const open = (event: Event) => {
       if (isHTMLElement(event.target) && event.target.closest("button")) return;
       event.stopPropagation();
@@ -97,6 +100,26 @@ export class CardController {
     };
     element.addEventListener("click", open);
     element.addEventListener("keydown", event => { if (event.target === element && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); open(event); } });
+  }
+
+  private highlightOnInteraction(trigger: HTMLElement, targets: HTMLElement[]): void {
+    let hovered = false;
+    let focused = false;
+    const update = () => {
+      const active = !trigger.matches(":disabled") && (hovered || focused);
+      for (const target of targets) {
+        let sources = this.highlightedBy.get(target);
+        if (!sources) { sources = new Set(); this.highlightedBy.set(target, sources); }
+        if (active) sources.add(trigger);
+        else sources.delete(trigger);
+        if (sources.size) target.addClass("cloom-highlighted");
+        else target.removeClass("cloom-highlighted");
+      }
+    };
+    trigger.addEventListener("mouseenter", () => { hovered = true; update(); });
+    trigger.addEventListener("mouseleave", () => { hovered = false; update(); });
+    trigger.addEventListener("focus", () => { focused = trigger.matches(":focus-visible"); update(); });
+    trigger.addEventListener("blur", () => { focused = false; update(); });
   }
 
   async commitVariant(target: CardTarget, source: string, key: string, location: VariantLocation, snapshot: string, draft?: Choice): Promise<void> {
@@ -160,7 +183,10 @@ export class CardController {
     this.cards.set(el, target);
     if (ctx.addChild) {
       const child = new MarkdownRenderChild(el);
-      child.onunload = () => { this.cards.delete(el); };
+      child.onunload = () => {
+        this.cards.delete(el);
+        el.closest(".cm-embed-block")?.removeClass("cloom-embed-block");
+      };
       ctx.addChild(child);
     }
     this.options.app().workspace.iterateAllLeaves(leaf => { if (leaf.view instanceof MarkdownView && leaf.view.file?.path === target.path && !this.options.documents.validating.has(leaf.view.editor)) void this.options.documents.validateEditor(leaf.view).catch(error => this.options.report(error)); });
@@ -185,6 +211,7 @@ export class CardController {
 
   drawCard(el: HTMLElement, target: CardTarget): void {
     this.cards.set(el, target);
+    el.closest(".cm-embed-block")?.addClass("cloom-embed-block");
     el.empty();
     const raw = parseValues(target.source);
     const values: Values = {};
@@ -252,6 +279,8 @@ export class CardController {
         span.createSpan({ text: rest });
       }
       this.highlightUnknown(span, target, key);
+      const button = span.querySelector<HTMLElement>(".cloom-field-button");
+      if (button) this.highlightOnInteraction(button, [span]);
       return true;
     };
     const section = (title: string, rerollKey: string | string[]) => {
@@ -293,6 +322,14 @@ export class CardController {
       if (has("surname")) {
         this.highlightUnknown(fullName.createSpan({ cls: "cloom-surname", text: values.surname || "[Фамилия]" }), target, "surname");
       }
+      controls.querySelectorAll<HTMLElement>("button[data-reroll-fields]").forEach(button => {
+        const targets: HTMLElement[] = [];
+        for (const key of (button.getAttribute("data-reroll-fields") ?? "").split(" ")) {
+          const value = fullName.querySelector<HTMLElement>(key === "name" ? ".cloom-given-name" : ".cloom-surname");
+          if (value) targets.push(value);
+        }
+        this.highlightOnInteraction(button, targets);
+      });
     }
     const actions = nameRow.createDiv({ cls: "cloom-card-actions" });
     const lock = actions.createEl("button", { cls: "cloom-section-button cloom-lock-button", attr: {

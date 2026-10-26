@@ -1,20 +1,20 @@
 .cloom-card { border: 1px solid var(--background-modifier-border); border-radius: 6px; padding: 20px clamp(12px, 3%, 32px); color: var(--text-normal); background: var(--background-primary); overflow-wrap: anywhere; }
 .markdown-preview-view .cloom-card { margin-block: 12px; }
-.markdown-source-view.mod-cm6 .cm-embed-block:has(.cloom-card),
-.markdown-source-view.mod-cm6 .cm-embed-block:has(.cloom-card)::before,
-.markdown-source-view.mod-cm6 .cm-embed-block:has(.cloom-card)::after { border-radius: 6px; }
+.markdown-source-view.mod-cm6 .cm-embed-block.cloom-embed-block,
+.markdown-source-view.mod-cm6 .cm-embed-block.cloom-embed-block::before,
+.markdown-source-view.mod-cm6 .cm-embed-block.cloom-embed-block::after { border-radius: 6px; }
 .cloom-identity { padding-bottom: 24px; }
 .cloom-identity-heading { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; align-items: start; gap: 12px; margin-bottom: 10px; }
 .cloom-card-actions { display: flex; gap: 4px; grid-column: 3; grid-row: 1; }
 .cloom-identity-heading > .cloom-section-button { grid-column: 3; grid-row: 1; }
 .cloom-identity-heading > .cloom-undo-button { grid-column: 1; }
 .cloom-card .cloom-undo-button:disabled { opacity: .35; cursor: default; background: transparent; color: var(--text-muted); }
-.cloom-card .cloom-name { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: start; column-gap: 6px; grid-column: 2; grid-row: 1; min-width: 0; margin: 0; font-size: var(--h2-size); font-weight: var(--h2-weight); }
+.cloom-card .cloom-name { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: start; gap: 0 6px; grid-column: 2; grid-row: 1; min-width: 0; margin: 0; font-size: var(--h2-size); font-weight: var(--h2-weight); }
 .cloom-given-name { grid-column: 1; grid-row: 1; min-width: 0; max-width: 100%; justify-self: end; text-align: right; border-radius: 3px; }
 .cloom-surname { grid-column: 3; grid-row: 1; min-width: 0; max-width: 100%; justify-self: start; text-align: left; border-radius: 3px; }
 .cloom-name-controls { display: inline-flex; align-items: center; grid-column: 2; grid-row: 1; white-space: nowrap; }
-.cloom-name:has(.cloom-name-controls > button[data-reroll-fields~="name"]:enabled:is(:hover, :focus-visible)) > .cloom-given-name,
-.cloom-name:has(.cloom-name-controls > button[data-reroll-fields~="surname"]:enabled:is(:hover, :focus-visible)) > .cloom-surname,
+.cloom-name > .cloom-given-name.cloom-highlighted,
+.cloom-name > .cloom-surname.cloom-highlighted,
 .cloom-name-controls > button:focus-visible { background: var(--background-modifier-hover); }
 .cloom-card .cloom-meta { margin: 0; color: var(--text-muted); }
 .cloom-meta .cloom-field { display: inline-flex; align-items: center; vertical-align: middle; max-width: 100%; }
@@ -34,17 +34,17 @@
 .cloom-card button:disabled { opacity: .35; cursor: default; }
 .cloom-field-button svg, .cloom-section-button svg { width: 16px; height: 16px; }
 .cloom-field-button, .cloom-section-button { user-select: none; -webkit-user-select: none; }
-.cloom-field { display: inline; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.cloom-field { display: inline; border-radius: 3px; }
 .cloom-field-start { display: inline-block; white-space: nowrap; }
-.cloom-field:has(.cloom-field-button:enabled:is(:hover, :focus-visible)) > span:not(.cloom-field-start),
-.cloom-field:has(.cloom-field-button:enabled:is(:hover, :focus-visible)) > .cloom-field-start > span { background: var(--background-modifier-hover); }
+.cloom-field.cloom-highlighted > span:not(.cloom-field-start),
+.cloom-field.cloom-highlighted > .cloom-field-start > span { background: var(--background-modifier-hover); }
 @media (pointer: coarse) {
   .cloom-identity-heading { grid-template-columns: 44px minmax(0, 1fr) auto; }
   .cloom-card .cloom-field-button, .cloom-card .cloom-section-button { width: 44px; height: 44px; }
 }
 .cloom-settings { container-type: inline-size; }
 .vertical-tab-content.cloom-settings { padding: 24px 0 0; }
-.cloom-settings > h2 { margin: 0 0 16px; padding: 0; font-size: 1.6em; line-height: 1.25; }
+.cloom-settings .cloom-settings-title { margin: 0 0 16px; padding: 0; font-size: 1.8em; font-weight: 600; line-height: 1.25; text-align: start; }
 .cloom-variant-editor { width: 100%; }
 .modal.cloom-variant-modal { width: min(760px, 95vw); border-radius: 6px; }
 .modal.cloom-anchored-modal { position: fixed; margin: 0; transform: none; min-width: 0; min-height: 0; overflow-y: auto; }
@@ -61,8 +61,8 @@
 .cloom-editable-value:not(.cloom-field):hover, .cloom-editable-value:not(.cloom-field):focus-visible,
 .cloom-field.cloom-editable-value:is(:hover, :focus-visible) > span:not(.cloom-field-start),
 .cloom-field.cloom-editable-value:is(:hover, :focus-visible) > .cloom-field-start > span { background: var(--background-modifier-hover); border-radius: 3px; }
-.cloom-story-content:has(> .cloom-editable-value:is(:hover, :focus-visible)) { background: var(--background-modifier-hover); border-radius: 3px; }
-.cloom-story-content:has(> .cloom-editable-value:is(:hover, :focus-visible)) > .cloom-editable-value { background: transparent; }
+.cloom-story-content.cloom-highlighted { background: var(--background-modifier-hover); border-radius: 3px; }
+.cloom-story-content.cloom-highlighted > .cloom-editable-value { background: transparent; }
 @container (max-width: 580px) {
   .cloom-variant-editor .cloom-choice-row.cloom-has-gender { grid-template-columns: 54px minmax(0, 1fr); }
 }
@@ -86,7 +86,7 @@
 .cloom-transfer-status { display: flex; gap: 8px; align-items: center; margin-top: 10px; color: var(--text-muted); }
 .cloom-transfer-status:not(:empty)::before { content: ""; width: 14px; height: 14px; border: 2px solid var(--background-modifier-border); border-top-color: var(--text-accent); border-radius: 50%; animation: cloom-transfer-spin 1s linear infinite; }
 @keyframes cloom-transfer-spin { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .cloom-transfer-status::before { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .cloom-transfer-status:not(:empty)::before { animation: none; } }
 .cloom-choice-head, .cloom-choice-row { display: grid; grid-template-columns: 112px minmax(0, 1fr) 126px; gap: 8px; align-items: start; }
 .cloom-choice-head.cloom-has-gender, .cloom-choice-row.cloom-has-gender { grid-template-columns: 112px minmax(0, 1fr) 116px 126px; }
 .cloom-choice-head { margin: 4px 0; color: var(--text-muted); font-size: var(--font-smallest); }
@@ -112,7 +112,7 @@
 .cloom-add-empty { margin: 6px 0; }
 .cloom-story-label { display: block; margin: 10px 0 6px; color: var(--text-muted); font-size: var(--font-smallest); }
 .cloom-settings .cloom-story-input { min-height: 100px; padding: 10px 12px; }
-.cloom-card .cloom-draft-value { background: var(--background-modifier-hover); background: color-mix(in srgb, var(--interactive-accent) 15%, transparent); text-decoration: underline dotted var(--text-accent); text-underline-offset: 4px; border-radius: 4px; }
+.cloom-card .cloom-draft-value { background: var(--background-modifier-hover); text-decoration: underline; border-radius: 4px; }
 @container (max-width: 580px) {
   .cloom-choice-head.cloom-has-gender { display: none; }
   .cloom-choice-row.cloom-has-gender { grid-template-columns: 54px minmax(0, 1fr); gap: 6px; }
@@ -139,3 +139,4 @@
     .cloom-choice-head, .cloom-choice-row { grid-template-columns: 54px minmax(0, 1fr); }
   }
 }
+.cloom-settings-host { display: block; padding: 0; border: 0; }

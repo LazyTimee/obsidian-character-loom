@@ -1,4 +1,4 @@
-import { App, Modal, Notice, setIcon } from "obsidian";
+import { App, Modal, Notice, Setting, setIcon } from "obsidian";
 import { Choice, fieldLabels, genderFields, Tables } from "./data";
 import { elementWindow } from "./window-events";
 import { genderChoices, Values } from "./core";
@@ -47,17 +47,17 @@ export class VariantEditor extends Modal {
       const width = viewport?.width ?? win.innerWidth;
       const height = viewport?.height ?? win.innerHeight;
       const rect = anchor.getBoundingClientRect();
-      this.modalEl.style.width = `${Math.min(760, Math.max(0, width - margin * 2))}px`;
+      this.modalEl.setCssStyles({ width: `${Math.min(760, Math.max(0, width - margin * 2))}px` });
       const modalWidth = this.modalEl.getBoundingClientRect().width;
-      this.modalEl.style.left = `${Math.max(leftEdge + margin, Math.min(rect.left, leftEdge + width - modalWidth - margin))}px`;
+      this.modalEl.setCssStyles({ left: `${Math.max(leftEdge + margin, Math.min(rect.left, leftEdge + width - modalWidth - margin))}px` });
       const below = Math.max(0, topEdge + height - margin - rect.bottom - gap);
       const above = Math.max(0, rect.top - gap - topEdge - margin);
       // Prefer below; use the space above only when the bottom edge leaves too little room.
       const useAbove = below < 160 && above > below;
       const available = useAbove ? above : below;
-      this.modalEl.style.maxHeight = `${available}px`;
+      this.modalEl.setCssStyles({ maxHeight: `${available}px` });
       const modalHeight = this.modalEl.getBoundingClientRect().height;
-      this.modalEl.style.top = `${useAbove ? Math.max(topEdge + margin, rect.top - gap - modalHeight) : rect.bottom + gap}px`;
+      this.modalEl.setCssStyles({ top: `${useAbove ? Math.max(topEdge + margin, rect.top - gap - modalHeight) : rect.bottom + gap}px` });
     };
     const observer = new win.ResizeObserver(place);
     observer.observe(this.modalEl);
@@ -83,7 +83,7 @@ export class VariantEditor extends Modal {
 
   private render(body: HTMLElement, location: VariantLocation): void {
     body.empty();
-    const heading = body.createEl("h3");
+    const heading = new Setting(body).setHeading().nameEl;
     [...this.tablePath(location), location.item.value].forEach((part, index) => {
       if (index) heading.createSpan({ cls: "cloom-breadcrumb-separator", text: " ▸ ", attr: { "aria-hidden": "true" } });
       heading.createSpan({ text: part });
@@ -105,7 +105,7 @@ export class VariantEditor extends Modal {
     const percent = weights.createSpan({ cls: "cloom-choice-percent" });
     const name = row.createEl("textarea", { cls: "cloom-value-input", attr: { rows: "1", "aria-label": "Значение варианта" } });
     name.value = draft.value;
-    const resize = (field: HTMLTextAreaElement) => { field.style.height = "auto"; field.style.height = `${field.scrollHeight + 2}px`; };
+    const resize = (field: HTMLTextAreaElement) => { field.setCssStyles({ height: "auto" }); field.setCssStyles({ height: `${field.scrollHeight + 2}px` }); };
     const probability = () => {
       const gender = draft.gender ?? location.parent?.gender;
       const eligible = location.siblings.map(item => item === location.item ? draft : item)
@@ -164,9 +164,9 @@ export class VariantEditor extends Modal {
       catch (error) { console.error("Character Loom variant", error); new Notice(error instanceof Error ? error.message : "Не удалось сохранить вариант."); }
       finally { busy = false; save.disabled = false; if (remove) remove.disabled = false; }
     };
-    save.addEventListener("click", () => submit(false));
+    save.addEventListener("click", () => { void submit(false); });
     remove?.addEventListener("click", () => {
-      if (confirming) return submit(true);
+      if (confirming) { void submit(true); return; }
       confirming = true;
       setIcon(remove, "check"); remove.addClass("cloom-confirm-delete");
       remove.setAttribute("aria-label", "Подтвердить удаление варианта");

@@ -212,7 +212,7 @@ export function applyValues(source: string, values: Values): string {
   for (const match of source.matchAll(/^[^\r\n]+/gm)) {
     const key = /^[\t ]*([a-z-]+)[\t ]*:/.exec(match[0])?.[1];
     if (!key || !order.includes(key)) continue;
-    slots.add(match.index!);
+    slots.add(match.index);
     lines.push({ line: match[0], key });
   }
   lines.sort((a, b) => order.indexOf(a.key) - order.indexOf(b.key));
@@ -231,8 +231,8 @@ export function readBlocks(document: string): Block[] {
     while (++i < lines.length && !close.test(lines[i][0])) { /* skip fenced content */ }
     if (i >= lines.length) break;
     if (opening[2].trim() !== "cloom") continue;
-    const from = lines[start].index! + lines[start][0].length;
-    const to = lines[i].index!;
+    const from = lines[start].index + lines[start][0].length;
+    const to = lines[i].index;
     blocks.push({ lineStart: start, from, to, source: document.slice(from, to) });
   }
   return blocks;

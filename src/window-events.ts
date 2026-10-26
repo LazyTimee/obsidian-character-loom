@@ -40,9 +40,10 @@ export function registerDocumentEvents(plugin: Plugin, setup: (doc: Document, li
 }
 
 export function isHTMLElement(target: EventTarget | null | undefined): target is HTMLElement {
-  return !!target && "instanceOf" in target && typeof target.instanceOf === "function" && target.instanceOf(HTMLElement);
+  const node = target as Node | null | undefined;
+  return !!node && typeof node.instanceOf === "function" && node.instanceOf(HTMLElement);
 }
 
-export function elementWindow(element: HTMLElement): Window & typeof globalThis {
-  return element.win as Window & typeof globalThis;
+export function elementWindow(element: HTMLElement): Window & typeof window {
+  return element.win as Window & typeof window;
 }
