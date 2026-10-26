@@ -6,3 +6,14 @@ dist/
 .env
 .env.*
 !.env.example
+release/
+main.js.map
+
+# Local tests and test artifacts
+/tests/
+/tsconfig.tests.json
+/test-results/
+/playwright-report/
+/coverage/
+/scripts/
+/docs/

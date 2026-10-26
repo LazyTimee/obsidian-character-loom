@@ -1,9 +1,9 @@
 {
-  "id": "cloom",
+  "id": "character-loom",
   "name": "Character Loom",
   "version": "1.0.0",
   "minAppVersion": "1.5.0",
   "description": "Настраиваемый генератор персонажей для НРИ.",
-  "author": "Alexandr",
+  "author": "LazyTime",
   "isDesktopOnly": false
 }
