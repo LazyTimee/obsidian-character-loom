@@ -64,24 +64,6 @@ Import and export support all tables at once or an individual section. Import ad
 
 Characters are saved in `cloom` blocks within notes. Tables are stored in `data.json` in the installed plugin folder. The plugin works locally and makes no network requests.
 
-## Development
-
-Building requires Node.js and pnpm. Run these commands from the repository root:
-
-```sh
-pnpm install --frozen-lockfile
-pnpm typecheck
-pnpm build
-```
-
-The production build creates `main.js`, `manifest.json`, and `styles.css` in `release/character-loom/`. Copy these three files into `.obsidian/plugins/character-loom/` in your vault. To copy them automatically during a build, set `CLOOM_PLUGIN_DIR` to that plugin folder.
-
-`pnpm dev` creates `main.js` in the repository root for development.
-
-Tests are kept locally and are not included in this repository. If the local test files are available, run `pnpm test`. Optional browser checks use `node scripts/test-settings-browser.mjs` and require Playwright and Chromium installed separately.
-
-Source code is in `src/`; default tables are in `src/default-tables.json`.
-
 ## License
 
 [MIT](LICENSE).

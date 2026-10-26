@@ -13,6 +13,8 @@ main.js.map
 /tests/
 /tsconfig.tests.json
 /test-results/
+/test-results*.txt
+/test-results*.log
 /playwright-report/
 /coverage/
 /scripts/

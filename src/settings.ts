@@ -18,10 +18,11 @@ export class CloomSettingTab extends PluginSettingTab {
   private rows: Row[] = [];
   private searchQuery = "";
   private content!: HTMLElement;
+  private renderContainer?: HTMLElement;
   private resizeObserver?: ResizeObserver;
   private lists = new Set<VirtualSettingsList<RowSpec>>();
   private windows = new WeakMap<Choice[], ListWindow>();
-  private searchWindow?: { query: string; state: ListWindow };
+  private searchWindow?: { query: string; states: Map<string, ListWindow> };
   private focusChoice?: Choice;
   private resizeFrame?: number;
   private resizeWindow?: Window;
@@ -50,11 +51,12 @@ export class CloomSettingTab extends PluginSettingTab {
   display(): void { this.renderSettings(this.containerEl); }
 
   private renderSettings(container: HTMLElement): void {
+    this.renderContainer = container;
     this.resizeObserver?.disconnect();
     this.disposeLists();
     container.empty();
     this.containerEl.addClass("cloom-settings");
-    container.createEl("h2", { cls: "cloom-settings-title", text: "Character Loom" });
+    new Setting(container).setName("Character Loom").setHeading().setClass("cloom-settings-title");
     container.createEl("p", { cls: "cloom-settings-description", text: "Здесь можно редактировать варианты для генерации персонажей. Таблицы общие для всех заметок текущего хранилища. Изменения сохраняются автоматически. Чтобы создать генератор в заметке, вызовите в палитре команд «Вставить генератор после текущего блока»." });
     this.renderTransferControls(container);
     if (this.plugin.settingsErrors.length) {
@@ -161,8 +163,7 @@ export class CloomSettingTab extends PluginSettingTab {
     this.drafts.clear();
     this.windows = new WeakMap();
     this.searchWindow = undefined;
-    if (typeof this.update === "function") this.update();
-    else this.renderSettings(this.containerEl);
+    this.renderSettings(this.renderContainer ?? this.containerEl);
   }
 
   private chooseImport(key?: string): void {
@@ -215,13 +216,27 @@ export class CloomSettingTab extends PluginSettingTab {
         }
       };
       for (const [key, items] of Object.entries(this.plugin.settings.tables)) visit(key, items);
-      matches.sort((a, b) =>
-        Number(b.item.value.toLocaleLowerCase("ru-RU").startsWith(query)) -
-        Number(a.item.value.toLocaleLowerCase("ru-RU").startsWith(query)));
+      const relevance = (match: RowSpec): number => {
+        const value = match.item.value.toLocaleLowerCase("ru-RU");
+        return value === query ? 0 : value.startsWith(query) ? 1 : value.includes(query) ? 2 : 3;
+      };
+      matches.sort((a, b) => relevance(a) - relevance(b));
       if (!matches.length) results.createEl("p", { text: "Варианты не найдены." });
       else {
-        if (this.searchWindow?.query !== query) this.searchWindow = { query, state: this.newWindow() };
-        this.renderVirtualList(results, matches, this.searchWindow.state);
+        if (this.searchWindow?.query !== query) this.searchWindow = { query, states: new Map() };
+        const groups = new Map<string, RowSpec[]>();
+        for (const match of matches) {
+          let groupMatches = groups.get(match.key);
+          if (!groupMatches) { groupMatches = []; groups.set(match.key, groupMatches); }
+          groupMatches.push(match);
+        }
+        for (const [key, tableMatches] of groups) {
+          const group = results.createDiv({ cls: "cloom-search-group" });
+          new Setting(group).setName(`${this.label(key)} (${tableMatches.length})`).setHeading();
+          let state = this.searchWindow.states.get(key);
+          if (!state) { state = this.newWindow(); this.searchWindow.states.set(key, state); }
+          this.renderVirtualList(group.createDiv({ cls: "cloom-virtual-list" }), tableMatches, state);
+        }
       }
     } else {
       for (const key of ["gender", "gender-age", "name", ...fieldOrder.filter(key => key !== "name" && key !== "gender-age")]) this.renderTable(this.content, key);
@@ -476,7 +491,7 @@ class RestoreDefaultsModal extends Modal {
     this.titleEl.setText("Восстановить стандартные таблицы?");
     this.contentEl.createEl("p", { text: "Все пользовательские значения и подтаблицы будут удалены и заменены стандартными данными, как при первом запуске плагина. Файл настроек генератора будет перезаписан. Это действие нельзя отменить. Перед восстановлением можно экспортировать таблицы." });
     new Setting(this.contentEl)
-      .addButton(button => button.setButtonText("Восстановить").setDestructive().onClick(() => { this.confirmed = true; this.close(); }))
+      .addButton(button => button.setButtonText("Восстановить").setClass("mod-warning").onClick(() => { this.confirmed = true; this.close(); }))
       .addButton(button => button.setButtonText("Отмена").onClick(() => this.close()));
   }
   onClose(): void { this.resolve(this.confirmed); this.contentEl.empty(); }
@@ -494,7 +509,7 @@ class DeleteGenderModal extends Modal {
     this.titleEl.setText(`Удалить пол «${this.value}»?`);
     this.contentEl.createEl("p", { text: "У связанных вариантов возраста и имён пол изменится на «Любой»." });
     new Setting(this.contentEl)
-      .addButton(button => button.setButtonText("Удалить").setDestructive().onClick(() => { this.confirmed = true; this.close(); }))
+      .addButton(button => button.setButtonText("Удалить").setClass("mod-warning").onClick(() => { this.confirmed = true; this.close(); }))
       .addButton(button => button.setButtonText("Отмена").onClick(() => this.close()));
   }
   onClose(): void { this.resolve(this.confirmed); this.contentEl.empty(); }
