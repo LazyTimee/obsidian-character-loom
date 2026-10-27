@@ -322,7 +322,7 @@ export class CardController {
     this.cards.set(el, target);
     el.closest(".cm-embed-block")?.addClass("cloom-embed-block");
     el.empty();
-    const textUpdates: Array<{ key: string; update(value: string): void }> = [];
+    const textUpdates: Array<{ key: string; update: (value: string) => void }> = [];
     const highlights: Array<{ key: string; element: HTMLElement }> = [];
     const generationButtons: HTMLButtonElement[] = [];
     const highlight = (element: HTMLElement, key: string) => {
@@ -459,10 +459,10 @@ export class CardController {
     };
     const identity = card.createEl("header", { cls: "cloom-identity" });
     const nameRow = identity.createDiv({ cls: "cloom-identity-heading" });
-    const undo = nameRow.createEl("button", { cls: "cloom-section-button cloom-undo-button", attr: { type: "button", "aria-label": "Отменить генерацию", title: "Отменить генерацию" } });
+    const undo = nameRow.createEl("button", { cls: "cloom-section-button cloom-undo-button", attr: { type: "button", "aria-label": "Отменить действие", title: "Отменить действие (Ctrl+Z)" } });
     setIcon(undo, "undo-2");
     const animateUndo = setupIconMotion(undo, "undo-2");
-    undo.disabled = locked || !this.options.history.forTarget(target)?.states.length;
+    undo.disabled = locked || !this.options.documents.editorFor(target.path);
     const preserveUndoScroll = this.preserveControlScroll(undo);
     undo.addEventListener("click", event => {
       event.stopPropagation();
@@ -473,8 +473,7 @@ export class CardController {
       busy = true;
       void (async () => {
         try {
-          if (await this.options.documents.updateTarget(target, undefined, "undo")) { this.refreshCards(target.path); }
-          else new Notice("Character Loom: блок изменился или не найден. Переключите режим заметки и повторите.");
+          if (!await this.options.documents.undo(target.path)) new Notice("Character Loom: откройте заметку в режиме редактирования для отмены действия.");
         } catch (error) { this.options.report(error); }
         finally { restore(); busy = false; }
       })();
@@ -728,7 +727,7 @@ export class CardController {
         button.disabled = controlsLocked;
         button.hidden = controlsLocked;
       }
-      undo.disabled = controlsLocked || !this.options.history.forTarget(target)?.states.length;
+      undo.disabled = controlsLocked || !this.options.documents.editorFor(target.path);
       undo.hidden = controlsLocked;
       nameSeparator?.setText(controlsLocked ? " · " : "");
       if (controlsLocked) nameRow.addClass("cloom-identity-controls-locked");

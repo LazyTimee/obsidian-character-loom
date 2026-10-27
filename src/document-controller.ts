@@ -72,6 +72,17 @@ export class DocumentController {
     return editor;
   }
 
+  async undo(path: string): Promise<boolean> {
+    await afterEditorUpdate();
+    const editor = this.editorFor(path);
+    if (!editor) return false;
+    editor.focus();
+    editor.undo();
+    this.snapshots.set(editor, editor.getValue());
+    this.options.refreshCards(path);
+    return true;
+  }
+
   async updateTarget(target: CardTarget, updates: Values | undefined, action?: "generate" | "undo" | "toggle-lock"): Promise<boolean> {
     // Code-block processors also run inside CodeMirror's update. Dispatch in the next task,
     // then resolve the block against the latest document so intervening edits are preserved.

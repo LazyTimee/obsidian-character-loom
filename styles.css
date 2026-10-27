@@ -14,7 +14,7 @@
 .cloom-surname { grid-column: 3; grid-row: 1; min-width: 0; max-width: 100%; justify-self: start; text-align: left; border-radius: 3px; }
 .cloom-name-controls { display: inline-flex; align-items: center; grid-column: 2; grid-row: 1; white-space: nowrap; }
 .cloom-name-separator { white-space: pre; }
-.cloom-identity-controls-locked .cloom-name { column-gap: 0; }
+.cloom-identity-controls-locked .cloom-name { gap: 0; }
 .cloom-name-measuring > .cloom-given-name,
 .cloom-name-measuring > .cloom-surname { white-space: nowrap; }
 .cloom-identity-heading.cloom-identity-heading-stacked { --cloom-action-width: 30px; }

@@ -10,7 +10,7 @@ A fantasy tabletop role-playing character generator for Obsidian. Create charact
 
 - Character cards with a first name, surname, gender, age, race, appearance, personality, and backstory.
 - Generate an entire card, individual sections, or individual fields.
-- Undo generation and lock cards to prevent changes.
+- Undo note edits using the editor history and lock cards to prevent changes.
 - Custom entries, probability weights, and subtables.
 - Search entries and import or export tables as JSON.
 - Works in Live Preview and Reading view.
@@ -43,7 +43,7 @@ You can also run **Character Loom: Вставить генератор посл�
 
 - Click the die next to a field to generate another value.
 - Use the section buttons to regenerate appearance or backstory, or **Другой персонаж** (“Another character”) to regenerate the entire card.
-- Use the undo button to restore the previous generation result.
+- Use the undo button to run the editor's native undo, like Ctrl+Z, including manual note edits. The button is unavailable without an open text editor.
 - Close the lock to prevent editing and generation. Click it again to unlock the card.
 
 In Live Preview, clicking a filled value opens the entry editor. You can change the value and its weight, save it, or delete the entry from the table. These actions update the table and the current card; other cards keep their values. The entry editor is unavailable in Reading view.
