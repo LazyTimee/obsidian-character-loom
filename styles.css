@@ -41,7 +41,10 @@
 .cloom-card .cloom-section-heading h3 { margin: 0; font-size: var(--font-smallest); font-weight: var(--font-medium); letter-spacing: .1em; text-transform: uppercase; color: var(--text-accent); }
 .cloom-card .cloom-section-content p { margin: 0 0 10px; }
 .cloom-card .cloom-section-content p:last-child { margin-bottom: 0; }
-.cloom-card .cloom-description { font-weight: var(--font-normal); line-height: var(--line-height-normal); }
+.cloom-card .cloom-description { font-weight: inherit; line-height: var(--line-height-normal); }
+.cloom-description .cloom-field { display: inline-flex; align-items: baseline; vertical-align: baseline; max-width: 100%; font-weight: 450; }
+.cloom-description .cloom-field-button { align-self: center; }
+.cloom-description .cloom-field-text { min-width: 0; }
 .cloom-story-title { font-weight: var(--font-medium); }
 .cloom-card .cloom-field-button, .cloom-card .cloom-section-button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; vertical-align: middle; height: 26px; width: 24px; padding: 3px; border: 0; border-radius: 4px; background: transparent; color: var(--text-muted); box-shadow: none; cursor: pointer; }
 .cloom-card .cloom-section-button { width: 30px; height: 30px; }
@@ -53,10 +56,8 @@
 .cloom-lock-icon { display: flex; }
 .cloom-field-button, .cloom-section-button { user-select: none; -webkit-user-select: none; }
 .cloom-field { display: inline; border-radius: 3px; }
-.cloom-field-start { display: inline-flex; align-items: center; vertical-align: baseline; white-space: nowrap; }
-.cloom-field-text { align-self: baseline; line-height: max(26px, 1lh); }
-.cloom-field.cloom-highlighted > span:not(.cloom-field-start),
-.cloom-field.cloom-highlighted > .cloom-field-start > span { background: var(--background-modifier-hover); }
+.cloom-field-text { line-height: max(26px, 1lh); }
+.cloom-field.cloom-highlighted > span { background: var(--background-modifier-hover); }
 @media (pointer: coarse) {
   .cloom-field-text { line-height: max(44px, 1lh); }
   .cloom-card:not(.cloom-card-controls-locked) .cloom-meta { margin-inline-end: 56px; }
@@ -64,9 +65,8 @@
   .cloom-identity-heading.cloom-identity-heading-stacked { --cloom-action-width: 44px; }
   .cloom-card .cloom-field-button, .cloom-card .cloom-section-button { width: 44px; height: 44px; }
 }
-.cloom-mobile-card .cloom-description .cloom-field-start { display: inline; }
-.cloom-mobile-card .cloom-description .cloom-field-text { line-height: inherit; }
-.cloom-card.cloom-mobile-card .cloom-description .cloom-field-button { height: 1em; min-height: 0; padding-block: 0; vertical-align: -.125em; }
+.cloom-card-controls-locked .cloom-description .cloom-field { display: inline; vertical-align: baseline; }
+.cloom-card-controls-locked .cloom-description .cloom-field-text { line-height: inherit; }
 .cloom-settings { container-type: inline-size; }
 .vertical-tab-content.cloom-settings { padding: 24px 0; }
 .cloom-settings .cloom-settings-title { margin: 0 0 16px; padding: 0; border-top: 0; }
@@ -86,8 +86,7 @@
 .cloom-delete-warning:empty { display: none; }
 .cloom-editable-value { cursor: pointer; }
 .cloom-editable-value:not(.cloom-field):hover, .cloom-editable-value:not(.cloom-field):focus-visible,
-.cloom-field.cloom-editable-value:is(:hover, :focus-visible) > span:not(.cloom-field-start),
-.cloom-field.cloom-editable-value:is(:hover, :focus-visible) > .cloom-field-start > span { background: var(--background-modifier-hover); border-radius: 3px; }
+.cloom-field.cloom-editable-value:is(:hover, :focus-visible) > span { background: var(--background-modifier-hover); border-radius: 3px; }
 .cloom-story-content.cloom-highlighted { background: var(--background-modifier-hover); border-radius: 3px; }
 .cloom-story-content.cloom-highlighted > .cloom-editable-value { background: transparent; }
 @container (max-width: 580px) {

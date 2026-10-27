@@ -1,4 +1,4 @@
-import { App, MarkdownPostProcessorContext, MarkdownRenderChild, MarkdownView, Notice, Platform, Plugin, setIcon } from "obsidian";
+import { App, MarkdownPostProcessorContext, MarkdownRenderChild, MarkdownView, Notice, Plugin, setIcon } from "obsidian";
 import { Choice, fieldLabels, genderFields, rerollLabels, Tables } from "./data";
 import { choiceGender, currentGender, genderLabel, generate, generateAll, locateBlock, parseValues, pickForGender, readBlocks, Values } from "./core";
 import { knownVariant } from "./variant-presence";
@@ -335,7 +335,6 @@ export class CardController {
       return element;
     };
     const card = el.createDiv({ cls: locked ? "cloom-card cloom-card-locked" : "cloom-card" });
-    if (Platform.isMobileApp) card.addClass("cloom-mobile-card");
     let busy = false;
     let updateNameLayout = () => {};
     let nameSeparator: HTMLElement | undefined;
@@ -436,16 +435,8 @@ export class CardController {
       if (!values[key] && !(fallback && this.options.tables()[key]?.length)) return false;
       const span = container.createSpan({ cls: "cloom-field" });
       const label = fieldLabels[key];
-      if (wholeValue) {
-        rerollButton(span, key);
-        text(span, key, value => value || `[${label}]`);
-      } else {
-        const split = (value: string) => (value || `[${label}]`).match(/^(\S+)([\s\S]*)$/) ?? ["", value || `[${label}]`, ""];
-        const start = span.createSpan({ cls: "cloom-field-start" });
-        rerollButton(start, key);
-        text(start, key, value => split(value)[1], "cloom-field-text");
-        text(span, key, value => split(value)[2]);
-      }
+      rerollButton(span, key);
+      text(span, key, value => value || `[${label}]`, wholeValue ? undefined : "cloom-field-text");
       highlight(span, key);
       const button = span.querySelector<HTMLElement>(".cloom-field-button");
       if (button) this.highlightOnInteraction(button, [span]);
@@ -705,7 +696,6 @@ export class CardController {
       }
       if (has("appearance-feature")) {
         field(description, "appearance-feature", true);
-        suffix("appearance-feature", value => /[.!?…]$/.test(value) ? "" : ".");
         description.appendText(" ");
       }
       if (has("clothing")) field(description, "clothing", true);
