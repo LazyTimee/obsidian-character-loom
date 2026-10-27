@@ -45,6 +45,7 @@
 .cloom-card .cloom-field-button:enabled:hover, .cloom-card .cloom-section-button:enabled:hover { color: var(--text-normal); background: var(--background-modifier-hover); }
 .cloom-card button:disabled { opacity: .35; cursor: default; }
 .cloom-field-button svg, .cloom-section-button svg { width: 16px; height: 16px; }
+.cloom-roll-icon { transform-box: fill-box; transform-origin: center; }
 .cloom-field-button, .cloom-section-button { user-select: none; -webkit-user-select: none; }
 .cloom-field { display: inline; border-radius: 3px; }
 .cloom-field-start { display: inline-block; white-space: nowrap; }

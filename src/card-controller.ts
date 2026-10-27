@@ -19,12 +19,18 @@ type CardOptions = {
   report(error: unknown): void;
 };
 
+type IconMotion = { frames: Keyframe[]; started: number };
+type CardRender = { card: HTMLElement; target: CardTarget; signature: string; update(values: Values): void };
+const iconMotionDuration = 350;
+
 export class CardController {
   readonly cards = new Map<HTMLElement, CardTarget>();
   private busyTargets = new Set<string>();
   private editingVariant = false;
   private highlightedBy = new WeakMap<HTMLElement, Set<HTMLElement>>();
   private nameObservers = new Map<HTMLElement, ResizeObserver>();
+  private iconMotions = new Map<string, Map<string, IconMotion>>();
+  private renders = new WeakMap<HTMLElement, CardRender>();
 
   constructor(private options: CardOptions) {}
 
@@ -32,6 +38,7 @@ export class CardController {
     plugin.register(() => {
       for (const observer of this.nameObservers.values()) observer.disconnect();
       this.nameObservers.clear();
+      this.iconMotions.clear();
     });
     plugin.registerMarkdownCodeBlockProcessor("cloom", (source, el, ctx) => this.renderCard(source, el, ctx));
     registerDocumentEvents(plugin, (doc, listen) => {
@@ -63,10 +70,10 @@ export class CardController {
   }
 
   refreshAll(): void {
-    for (const path of new Set([...this.cards.values()].map(target => target.path))) this.refreshCards(path);
+    for (const path of new Set([...this.cards.values()].map(target => target.path))) this.refreshCards(path, true);
   }
 
-  refreshCards(path: string): void {
+  refreshCards(path: string, rebuild = false): void {
     const editor = this.options.documents.editorFor(path);
     const blocks = editor ? readBlocks(editor.getValue()) : [];
     for (const [el, target] of this.cards) {
@@ -74,22 +81,52 @@ export class CardController {
       const block = editor ? locateBlock(editor.getValue(), target.source, target.lineStart) ?? blocks.find(block => block.lineStart === target.lineStart) : undefined;
       if (editor && !block) continue;
       if (block) { target.source = block.source; target.lineStart = block.lineStart; }
-      this.drawCard(el, target);
+      this.drawCard(el, target, rebuild);
     }
   }
 
+  private preserveControlScroll(button: HTMLElement): () => () => void {
+    const capture = () => {
+      const positions: Array<{ element: Element; top: number; left: number }> = [];
+      for (let element = button.parentElement; element; element = element.parentElement) {
+        positions.push({ element, top: element.scrollTop, left: element.scrollLeft });
+      }
+      const root = button.ownerDocument.scrollingElement;
+      if (root && !positions.some(position => position.element === root)) positions.push({ element: root, top: root.scrollTop, left: root.scrollLeft });
+      const editors: Array<() => void> = [];
+      this.options.app().workspace.iterateAllLeaves(leaf => {
+        if (!(leaf.view instanceof MarkdownView) || !leaf.view.containerEl.contains(button)) return;
+        const editor = leaf.view.editor;
+        const scroll = editor.getScrollInfo?.();
+        if (scroll) editors.push(() => editor.scrollTo(scroll.left, scroll.top));
+      });
+      return () => {
+        for (const { element, top, left } of positions) { element.scrollTop = top; element.scrollLeft = left; }
+        for (const restore of editors) restore();
+      };
+    };
+    let pending: (() => void) | undefined;
+    button.addEventListener("pointerdown", event => { pending = capture(); event.stopPropagation(); });
+    button.addEventListener("pointercancel", () => { pending = undefined; });
+    button.addEventListener("mousedown", event => {
+      pending ??= capture();
+      if (event.button === 0) event.preventDefault();
+      event.stopPropagation();
+    });
+    button.addEventListener("dblclick", event => { event.preventDefault(); event.stopPropagation(); });
+    return () => {
+      const restore = pending ?? capture();
+      pending = undefined;
+      return () => { restore(); elementWindow(button).requestAnimationFrame(restore); };
+    };
+  }
+
   private highlightUnknown(element: HTMLElement, target: CardTarget, key: string): void {
-    if (isCardLocked(target.source)) return;
+    this.updateFieldState(element, target, key);
     const values = parseValues(target.source);
     const tableKey = key === "backstory-text" ? "backstory-title" : key;
-    const present = !!values[tableKey]?.trim() || tableKey === "backstory-title" && !!values["backstory-text"]?.trim();
-    if (present && !knownVariant(this.options.tables(), key, values)) element.addClass("cloom-draft-value");
     if (this.options.errors().length || element.closest(".markdown-reading-view, .markdown-preview-view")) return;
     if (!values[key]?.trim()) return;
-    element.addClass("cloom-editable-value");
-    element.setAttribute("tabindex", "0");
-    element.setAttribute("aria-haspopup", "dialog");
-    element.setAttribute("title", "Редактировать");
     const story = element.closest<HTMLElement>(".cloom-story-content");
     if (story) this.highlightOnInteraction(element, [story]);
     const open = (event: Event) => {
@@ -105,6 +142,27 @@ export class CardController {
     };
     element.addEventListener("click", open);
     element.addEventListener("keydown", event => { if (event.target === element && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); open(event); } });
+  }
+
+  private updateFieldState(element: HTMLElement, target: CardTarget, key: string): void {
+    const locked = isCardLocked(target.source);
+    const values = parseValues(target.source);
+    const tableKey = key === "backstory-text" ? "backstory-title" : key;
+    const present = !!values[tableKey]?.trim() || tableKey === "backstory-title" && !!values["backstory-text"]?.trim();
+    if (!locked && present && !knownVariant(this.options.tables(), key, values)) element.addClass("cloom-draft-value");
+    else element.removeClass("cloom-draft-value");
+    const editable = !locked && !this.options.errors().length && !!values[key]?.trim()
+      && !element.closest(".markdown-reading-view, .markdown-preview-view");
+    if (editable) {
+      element.addClass("cloom-editable-value");
+      element.setAttribute("tabindex", "0");
+      element.setAttribute("aria-haspopup", "dialog");
+      element.setAttribute("title", "Редактировать");
+    } else {
+      element.removeClass("cloom-editable-value");
+      if (locked) element.removeClass("cloom-highlighted");
+      for (const attribute of ["tabindex", "aria-haspopup", "title"]) element.removeAttribute(attribute);
+    }
   }
 
   private highlightOnInteraction(trigger: HTMLElement, targets: HTMLElement[]): void {
@@ -192,6 +250,7 @@ export class CardController {
         this.nameObservers.get(el)?.disconnect();
         this.nameObservers.delete(el);
         this.cards.delete(el);
+        this.renders.delete(el);
         el.closest(".cm-embed-block")?.removeClass("cloom-embed-block");
       };
       ctx.addChild(child);
@@ -216,12 +275,14 @@ export class CardController {
     this.drawCard(el, target);
   }
 
-  drawCard(el: HTMLElement, target: CardTarget): void {
-    this.nameObservers.get(el)?.disconnect();
-    this.nameObservers.delete(el);
-    this.cards.set(el, target);
-    el.closest(".cm-embed-block")?.addClass("cloom-embed-block");
-    el.empty();
+  drawCard(el: HTMLElement, target: CardTarget, rebuild = false): void {
+    for (const [cardKey, motions] of this.iconMotions) {
+      for (const [key, motion] of motions) {
+        if (Date.now() - motion.started >= iconMotionDuration) motions.delete(key);
+      }
+      if (!motions.size) this.iconMotions.delete(cardKey);
+    }
+    const cardKey = JSON.stringify([target.path, target.lineStart]);
     const raw = parseValues(target.source);
     const values: Values = {};
     for (const [key, value] of Object.entries(raw)) {
@@ -230,8 +291,37 @@ export class CardController {
     const gender = currentGender(this.options.tables(), raw);
     if (!values.gender && gender) values.gender = genderLabel(this.options.tables(), gender) ?? "";
     const locked = isCardLocked(target.source);
+    const has = (key: string) => !!values[key] || !!this.options.tables()[key]?.length;
+    const showStoryText = !!values["backstory-text"] || !!values["backstory-title"] && !knownVariant(this.options.tables(), "backstory-title", raw);
+    const signature = JSON.stringify([target.path, target.lineStart, locked, !!this.options.errors().length,
+      !!el.closest(".markdown-reading-view, .markdown-preview-view"),
+      [...Object.keys(fieldLabels), "backstory-text"].map(key => [has(key), !!values[key]]), showStoryText]);
+    const previous = this.renders.get(el);
+    if (previous && !rebuild && previous.signature === signature && el.querySelector(".cloom-card") === previous.card) {
+      Object.assign(previous.target, target);
+      this.cards.set(el, previous.target);
+      previous.update(values);
+      return;
+    }
+    this.nameObservers.get(el)?.disconnect();
+    this.nameObservers.delete(el);
+    this.cards.set(el, target);
+    el.closest(".cm-embed-block")?.addClass("cloom-embed-block");
+    el.empty();
+    const textUpdates: Array<{ key: string; update(value: string): void }> = [];
+    const highlights: Array<{ key: string; element: HTMLElement }> = [];
+    const highlight = (element: HTMLElement, key: string) => {
+      this.highlightUnknown(element, target, key);
+      highlights.push({ key, element });
+    };
+    const text = (container: HTMLElement, key: string, format: (value: string) => string, cls?: string) => {
+      const element = container.createSpan({ cls, text: format(values[key] ?? "") });
+      textUpdates.push({ key, update: value => element.setText(format(value)) });
+      return element;
+    };
     const card = el.createDiv({ cls: locked ? "cloom-card cloom-card-locked" : "cloom-card" });
     let busy = false;
+    let updateNameLayout = () => {};
     const appearanceKeys = ["gender-age", "height", "build", "hair-length", "hair-type", "eyes-kind", "eyes-form", "eyes-color", "appearance-feature", "clothing"];
     const reroll = async (key: string | string[] | undefined, excludeCurrent: boolean) => {
       if (isCardLocked(target.source)) { new Notice(lockedNotice); return; }
@@ -267,27 +357,73 @@ export class CardController {
       const button = container.createEl("button", { cls: section ? "cloom-section-button" : "cloom-field-button", attr: { type: "button", "aria-label": rerollLabels[label], title: "" } });
       if (Array.isArray(key)) button.setAttribute("data-reroll-fields", key.join(" "));
       setIcon(button, icon);
+      let animateIcon = () => {};
+      const triangle = icon === "cloom-triangle-left" || icon === "cloom-triangle-right";
+      if (icon === "cloom-d20" || icon === "refresh-cw" || triangle) {
+        const svg = button.querySelector("svg");
+        if (svg) {
+          svg.classList.add("cloom-roll-icon");
+          const motionKey = JSON.stringify([icon, key ?? null]);
+          const animate = (motion: IconMotion) => {
+            const win = elementWindow(button);
+            if (!svg.animate || win.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+            for (const animation of svg.getAnimations()) animation.cancel();
+            const animation = svg.animate(motion.frames, { duration: iconMotionDuration, easing: "ease-out" });
+            animation.currentTime = Math.min(iconMotionDuration, Date.now() - motion.started);
+          };
+          const previous = this.iconMotions.get(cardKey)?.get(motionKey);
+          if (previous) animate(previous);
+          animateIcon = () => {
+            const style = elementWindow(button).getComputedStyle(svg);
+            let frames: Keyframe[];
+            if (triangle) {
+              const distance = icon === "cloom-triangle-left" ? -3 : 3;
+              const stacked = !!button.closest(".cloom-name-stacked");
+              frames = [
+                { translate: style.translate === "none" ? "0px 0px" : style.translate },
+                { translate: stacked ? `0px ${distance}px` : `${distance}px 0px`, offset: 0.25 },
+                { translate: "0px 0px" }
+              ];
+            } else {
+              const from = Number.parseFloat(style.rotate) || 0;
+              const to = Math.ceil((from + 180) / 360) * 360;
+              frames = [{ rotate: `${from}deg` }, { rotate: `${to}deg` }];
+            }
+            const motion = { frames, started: Date.now() };
+            let motions = this.iconMotions.get(cardKey);
+            if (!motions) { motions = new Map(); this.iconMotions.set(cardKey, motions); }
+            motions.set(motionKey, motion);
+            animate(motion);
+          };
+        }
+      }
       button.disabled = locked;
       if (!button.innerHTML) button.setText("d20");
       const excludeCurrent = !section || key === "quirk" || key === "backstory-title";
-      button.addEventListener("click", event => { event.stopPropagation(); void reroll(key, excludeCurrent); });
+      const preserveScroll = this.preserveControlScroll(button);
+      button.addEventListener("click", event => {
+        event.stopPropagation();
+        const restore = preserveScroll();
+        animateIcon();
+        void reroll(key, excludeCurrent).finally(restore);
+      });
+      return button;
     };
     const field = (container: HTMLElement, key: string, fallback = false, wholeValue = false): boolean => {
       if (!values[key] && !(fallback && this.options.tables()[key]?.length)) return false;
       const span = container.createSpan({ cls: "cloom-field" });
       const label = fieldLabels[key];
-      const text = values[key] || `[${label}]`;
       if (wholeValue) {
         rerollButton(span, key);
-        span.createSpan({ text });
+        text(span, key, value => value || `[${label}]`);
       } else {
-        const [, first, rest] = text.match(/^(\S+)([\s\S]*)$/) ?? ["", text, ""];
+        const split = (value: string) => (value || `[${label}]`).match(/^(\S+)([\s\S]*)$/) ?? ["", value || `[${label}]`, ""];
         const start = span.createSpan({ cls: "cloom-field-start" });
         rerollButton(start, key);
-        start.createSpan({ text: first });
-        span.createSpan({ text: rest });
+        text(start, key, value => split(value)[1], "cloom-field-text");
+        text(span, key, value => split(value)[2]);
       }
-      this.highlightUnknown(span, target, key);
+      highlight(span, key);
       const button = span.querySelector<HTMLElement>(".cloom-field-button");
       if (button) this.highlightOnInteraction(button, [span]);
       return true;
@@ -299,29 +435,30 @@ export class CardController {
       rerollButton(heading, rerollKey, title, true);
       return box.createDiv({ cls: "cloom-section-content" });
     };
-    const has = (key: string) => !!values[key] || !!this.options.tables()[key]?.length;
     const identity = card.createEl("header", { cls: "cloom-identity" });
     const nameRow = identity.createDiv({ cls: "cloom-identity-heading" });
     const undo = nameRow.createEl("button", { cls: "cloom-section-button cloom-undo-button", attr: { type: "button", "aria-label": "Отменить генерацию", title: "Отменить генерацию" } });
     setIcon(undo, "undo-2");
     undo.disabled = locked || !this.options.history.forTarget(target)?.states.length;
+    const preserveUndoScroll = this.preserveControlScroll(undo);
     undo.addEventListener("click", event => {
       event.stopPropagation();
       if (isCardLocked(target.source)) { new Notice(lockedNotice); return; }
       if (busy || undo.disabled) return;
+      const restore = preserveUndoScroll();
       busy = true;
       void (async () => {
         try {
           if (await this.options.documents.updateTarget(target, undefined, "undo")) { this.refreshCards(target.path); }
           else new Notice("Character Loom: блок изменился или не найден. Переключите режим заметки и повторите.");
         } catch (error) { this.options.report(error); }
-        finally { busy = false; }
+        finally { restore(); busy = false; }
       })();
     });
     if (has("name") || has("surname")) {
       const fullName = nameRow.createEl("h2", { cls: "cloom-name" });
       if (has("name")) {
-        this.highlightUnknown(fullName.createSpan({ cls: "cloom-given-name", text: values.name || "[Имя]" }), target, "name");
+        highlight(text(fullName, "name", value => value || "[Имя]", "cloom-given-name"), "name");
         fullName.appendText(" ");
       }
       const controls = fullName.createSpan({ cls: "cloom-name-controls" });
@@ -329,7 +466,7 @@ export class CardController {
       rerollButton(controls, ["name", "surname"].filter(has), "Имя и фамилия");
       if (has("surname")) rerollButton(controls, ["surname"], "Фамилия", false, "cloom-triangle-right");
       if (has("surname")) {
-        this.highlightUnknown(fullName.createSpan({ cls: "cloom-surname", text: values.surname || "[Фамилия]" }), target, "surname");
+        highlight(text(fullName, "surname", value => value || "[Фамилия]", "cloom-surname"), "surname");
       }
       controls.querySelectorAll<HTMLElement>("button[data-reroll-fields]").forEach(button => {
         const targets: HTMLElement[] = [];
@@ -339,7 +476,7 @@ export class CardController {
         }
         this.highlightOnInteraction(button, targets);
       });
-      const observer = new (elementWindow(fullName).ResizeObserver)(() => {
+      updateNameLayout = () => {
         nameRow.removeClass("cloom-identity-heading-stacked");
         fullName.removeClass("cloom-name-stacked");
         fullName.addClass("cloom-name-measuring");
@@ -351,7 +488,8 @@ export class CardController {
           nameRow.addClass("cloom-identity-heading-stacked");
           fullName.addClass("cloom-name-stacked");
         }
-      });
+      };
+      const observer = new (elementWindow(fullName).ResizeObserver)(updateNameLayout);
       observer.observe(nameRow);
       observer.observe(fullName);
       this.nameObservers.set(el, observer);
@@ -411,11 +549,16 @@ export class CardController {
         field(item, key, true, true);
       });
     }
-    if (has("quirk")) this.highlightUnknown(section("Странность", "quirk").createEl("p", { text: values.quirk || "[Странность]" }), target, "quirk");
+    const paragraph = (container: HTMLElement, key: string, placeholder: string, cls?: string) => {
+      const element = container.createEl("p", { cls, text: values[key] || placeholder });
+      textUpdates.push({ key, update: value => element.setText(value || placeholder) });
+      highlight(element, key);
+    };
+    if (has("quirk")) paragraph(section("Странность", "quirk"), "quirk", "[Странность]");
     const description = appearanceKeys.some(has) ? section("Внешность", appearanceKeys).createEl("p", { cls: "cloom-description" }) : undefined;
     if (description) {
       const suffix = (key: string, format: (value: string) => string) => {
-        description.createSpan({ text: format(values[key] ?? "") });
+        text(description, key, format);
       };
       if (has("gender-age")) { field(description, "gender-age", true); description.appendText(" "); }
       if (has("height")) {
@@ -449,8 +592,18 @@ export class CardController {
     if (values["backstory-title"] || values["backstory-text"] || this.options.tables()["backstory-title"]?.length) {
       const story = section("Предыстория", "backstory-title");
       story.addClass("cloom-story-content");
-      this.highlightUnknown(story.createEl("p", { cls: "cloom-story-title", text: values["backstory-title"] || "[Название предыстории]" }), target, "backstory-title");
-      if (values["backstory-text"] || values["backstory-title"] && !knownVariant(this.options.tables(), "backstory-title", raw)) this.highlightUnknown(story.createEl("p", { text: values["backstory-text"] || "[Текст предыстории]" }), target, "backstory-text");
+      paragraph(story, "backstory-title", "[Название предыстории]", "cloom-story-title");
+      if (showStoryText) paragraph(story, "backstory-text", "[Текст предыстории]");
     }
+    this.renders.set(el, { card, target, signature, update: next => {
+      for (const { key, update } of textUpdates) {
+        if (values[key] !== next[key]) update(next[key] ?? "");
+      }
+      if (values.name !== next.name || values.surname !== next.surname) updateNameLayout();
+      for (const { key, element } of highlights) this.updateFieldState(element, target, key);
+      undo.disabled = locked || !this.options.history.forTarget(target)?.states.length;
+      for (const key of Object.keys(values)) delete values[key];
+      Object.assign(values, next);
+    } });
   }
 }

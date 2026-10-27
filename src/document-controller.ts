@@ -104,7 +104,7 @@ export class DocumentController {
         if (!block) return false;
         const replacement = prepare(block);
         if (replacement === undefined) return false;
-        this.writeEditorBlock(editor, block, replacement, action === "toggle-lock");
+        this.writeEditorBlock(editor, block, replacement);
       } else {
         const file = this.options.app().vault.getAbstractFileByPath(target.path);
         if (!(file instanceof TFile)) return false;
@@ -120,21 +120,21 @@ export class DocumentController {
     return true;
   }
 
-  private writeEditorBlock(editor: Editor, block: Block, next: string, minimal = false): void {
+  private writeEditorBlock(editor: Editor, block: Block, next: string): void {
     if (next === block.source) return;
+    const scroll = editor.getScrollInfo?.();
     this.writing.add(editor);
     try {
       let start = 0;
       let oldEnd = block.source.length;
       let newEnd = next.length;
-      if (minimal) {
-        while (start < oldEnd && start < newEnd && block.source[start] === next[start]) start++;
-        while (oldEnd > start && newEnd > start && block.source[oldEnd - 1] === next[newEnd - 1]) { oldEnd--; newEnd--; }
-      }
+      while (start < oldEnd && start < newEnd && block.source[start] === next[start]) start++;
+      while (oldEnd > start && newEnd > start && block.source[oldEnd - 1] === next[newEnd - 1]) { oldEnd--; newEnd--; }
       editor.replaceRange(next.slice(start, newEnd), editor.offsetToPos(block.from + start), editor.offsetToPos(block.from + oldEnd));
       this.snapshots.set(editor, editor.getValue());
     } finally {
       this.writing.delete(editor);
+      if (scroll) editor.scrollTo(scroll.left, scroll.top);
     }
   }
 
