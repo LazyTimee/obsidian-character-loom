@@ -1,4 +1,4 @@
-import { App, MarkdownPostProcessorContext, MarkdownRenderChild, MarkdownView, Notice, Plugin, setIcon } from "obsidian";
+import { App, MarkdownPostProcessorContext, MarkdownRenderChild, MarkdownView, Notice, Platform, Plugin, setIcon } from "obsidian";
 import { Choice, fieldLabels, genderFields, rerollLabels, Tables } from "./data";
 import { choiceGender, currentGender, genderLabel, generate, generateAll, locateBlock, parseValues, pickForGender, readBlocks, Values } from "./core";
 import { knownVariant } from "./variant-presence";
@@ -335,6 +335,7 @@ export class CardController {
       return element;
     };
     const card = el.createDiv({ cls: locked ? "cloom-card cloom-card-locked" : "cloom-card" });
+    if (Platform.isMobileApp) card.addClass("cloom-mobile-card");
     let busy = false;
     let updateNameLayout = () => {};
     let nameSeparator: HTMLElement | undefined;

@@ -1,4 +1,4 @@
-import { App, Modal, Notice, Setting, setIcon } from "obsidian";
+import { App, Modal, Notice, Platform, Setting, setIcon } from "obsidian";
 import { Choice, fieldLabels, genderFields, Tables } from "./data";
 import { elementWindow } from "./window-events";
 import { choiceGender, genderChoices, Values } from "./core";
@@ -30,7 +30,8 @@ export class VariantEditor extends Modal {
     this.modalEl.addClass("cloom-variant-modal");
     this.contentEl.addClass("cloom-settings", "cloom-variant-editor");
     this.render(this.contentEl.createDiv(), this.locations[0]);
-    if (this.anchor) this.positionAtAnchor(this.anchor);
+    if (Platform.isMobileApp) this.modalEl.addClass("cloom-mobile-modal");
+    else if (this.anchor) this.positionAtAnchor(this.anchor);
   }
 
   private positionAtAnchor(anchor: HTMLElement): void {
