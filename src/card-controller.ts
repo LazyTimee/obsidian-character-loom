@@ -28,6 +28,7 @@ type CardRender = {
   dispose(): void;
   animateLock(motion: IconMotion): void;
   settleLock(): void;
+  setControlsLocked(locked: boolean): void;
 };
 const iconMotionDuration = 350;
 
@@ -179,7 +180,8 @@ export class CardController {
     let hovered = false;
     let focused = false;
     const update = () => {
-      const active = !trigger.matches(":disabled") && (hovered || focused);
+      const active = !trigger.closest(".cloom-card-locked, .cloom-card-controls-locked")
+        && !trigger.matches(":disabled") && (hovered || focused);
       for (const target of targets) {
         let sources = this.highlightedBy.get(target);
         if (!sources) { sources = new Set(); this.highlightedBy.set(target, sources); }
@@ -335,6 +337,7 @@ export class CardController {
     const card = el.createDiv({ cls: locked ? "cloom-card cloom-card-locked" : "cloom-card" });
     let busy = false;
     let updateNameLayout = () => {};
+    let nameSeparator: HTMLElement | undefined;
     const appearanceKeys = ["gender-age", "height", "build", "hair-length", "hair-type", "eyes-kind", "eyes-form", "eyes-color", "appearance-feature", "clothing"];
     const reroll = async (key: string | string[] | undefined, excludeCurrent: boolean) => {
       if (isCardLocked(target.source)) { new Notice(lockedNotice); return; }
@@ -417,6 +420,7 @@ export class CardController {
       const preserveScroll = this.preserveControlScroll(button);
       button.addEventListener("click", event => {
         event.stopPropagation();
+        if (button.disabled) return;
         const restore = preserveScroll();
         animateIcon();
         void reroll(key, excludeCurrent).finally(restore);
@@ -479,6 +483,7 @@ export class CardController {
       if (has("name")) rerollButton(controls, ["name"], "Имя", false, "cloom-triangle-left");
       rerollButton(controls, ["name", "surname"].filter(has), "Имя и фамилия");
       if (has("surname")) rerollButton(controls, ["surname"], "Фамилия", false, "cloom-triangle-right");
+      nameSeparator = controls.createSpan({ cls: "cloom-name-separator", attr: { "aria-hidden": "true" } });
       if (has("surname")) {
         highlight(text(fullName, "surname", value => value || "[Фамилия]", "cloom-surname"), "surname");
       }
@@ -495,7 +500,12 @@ export class CardController {
         fullName.removeClass("cloom-name-stacked");
         fullName.addClass("cloom-name-measuring");
         const names = fullName.querySelectorAll<HTMLElement>(".cloom-given-name, .cloom-surname");
-        const needsStack = Array.from(names).some(name => name.scrollWidth > name.clientWidth)
+        const needsStack = Array.from(names).some(name => {
+          const range = name.ownerDocument.createRange();
+          range.selectNodeContents(name);
+          return name.scrollWidth > name.clientWidth
+            || range.getBoundingClientRect().width > name.getBoundingClientRect().width;
+        })
           || controls.scrollWidth > fullName.clientWidth;
         fullName.removeClass("cloom-name-measuring");
         if (needsStack) {
@@ -578,6 +588,9 @@ export class CardController {
       request.locked = closing;
       request.pending++;
       this.lockRequests.set(id, request);
+      for (const [host, other] of this.cards) {
+        if (other.path === target.path && other.lineStart === target.lineStart) this.renders.get(host)?.setControlsLocked(true);
+      }
       const motion: IconMotion = {
         started: Date.now(), locked: closing,
         frames: [
@@ -627,6 +640,7 @@ export class CardController {
         } catch (error) { updated = false; this.options.report(error); }
         finally {
           this.lockRequests.delete(id);
+          this.refreshCards(target.path);
           if (!updated) {
             this.iconMotions.get(cardKey)?.delete("lock");
             for (const [host, other] of this.cards) {
@@ -696,13 +710,31 @@ export class CardController {
       paragraph(story, "backstory-title", "[Название предыстории]", "cloom-story-title");
       if (showStoryText) paragraph(story, "backstory-text", "[Текст предыстории]");
     }
-    this.renders.set(el, { card, target, signature, dispose: stopLockAnimation, animateLock, settleLock, update: next => {
+    const setControlsLocked = (controlsLocked: boolean) => {
+      if (controlsLocked) {
+        card.addClass("cloom-card-controls-locked");
+        card.querySelectorAll<HTMLElement>(".cloom-highlighted").forEach(element => {
+          element.removeClass("cloom-highlighted");
+          this.highlightedBy.delete(element);
+        });
+      } else card.removeClass("cloom-card-controls-locked");
+      for (const button of generationButtons) {
+        button.disabled = controlsLocked;
+        button.hidden = controlsLocked;
+      }
+      undo.disabled = controlsLocked || !this.options.history.forTarget(target)?.states.length;
+      undo.hidden = controlsLocked;
+      nameSeparator?.setText(controlsLocked ? " · " : "");
+      if (controlsLocked) nameRow.addClass("cloom-identity-controls-locked");
+      else nameRow.removeClass("cloom-identity-controls-locked");
+    };
+    setControlsLocked(locked || this.lockRequests.has(`${target.path}:${target.lineStart}`));
+    this.renders.set(el, { card, target, signature, dispose: stopLockAnimation, animateLock, settleLock, setControlsLocked, update: next => {
       const nextLocked = isCardLocked(target.source);
       if (nextLocked !== locked) {
         locked = nextLocked;
         if (locked) card.addClass("cloom-card-locked");
         else card.removeClass("cloom-card-locked");
-        for (const button of generationButtons) button.disabled = locked;
         lock.setAttribute("aria-label", locked ? "Разблокировать карточку" : "Заблокировать карточку");
         lock.setAttribute("aria-pressed", String(locked));
         const motion = this.iconMotions.get(cardKey)?.get("lock");
@@ -714,7 +746,7 @@ export class CardController {
       }
       if (values.name !== next.name || values.surname !== next.surname) updateNameLayout();
       for (const { key, element } of highlights) this.updateFieldState(element, target, key);
-      undo.disabled = locked || !this.options.history.forTarget(target)?.states.length;
+      setControlsLocked(locked || this.lockRequests.has(`${target.path}:${target.lineStart}`));
       for (const key of Object.keys(values)) delete values[key];
       Object.assign(values, next);
     } });
