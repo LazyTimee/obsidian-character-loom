@@ -160,15 +160,6 @@ export class DocumentController {
         const previousBlock = oldBlocks.length === editedBlocks.length ? oldBlocks[index] : undefined;
         // Without a matching baseline, saved values are not evidence of manual edits.
         if (!previousBlock) continue;
-        if (isCardLocked(previousBlock.source)) {
-          if (original.source !== previousBlock.source) {
-            const latest = readBlocks(editor.getValue())[index];
-            if (!latest || latest.source !== source) return;
-            this.writeEditorBlock(editor, latest, previousBlock.source);
-            new Notice("Изменения отменены из-за заблокированной карточки.");
-          }
-          continue;
-        }
         const previous = parseValues(previousBlock.source);
         if (!Object.values(previous).some(Boolean)) continue;
         const cursor = editor.getCursor?.();

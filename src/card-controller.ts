@@ -369,13 +369,10 @@ export class CardController {
       } catch (error) { this.options.report(error); }
       finally { busy = false; this.busyTargets.delete(id); }
     };
-    const rerollButton = (container: HTMLElement, key: string | string[] | undefined, label = Array.isArray(key) ? "Внешность" : key ? fieldLabels[key] : "всё", section = false, icon = section ? "refresh-cw" : "cloom-d20") => {
-      const button = container.createEl("button", { cls: section ? "cloom-section-button" : "cloom-field-button", attr: { type: "button", "aria-label": rerollLabels[label], title: "" } });
-      if (Array.isArray(key)) button.setAttribute("data-reroll-fields", key.join(" "));
-      setIcon(button, icon);
+    const setupIconMotion = (button: HTMLButtonElement, icon: string, key?: string | string[]) => {
       let animateIcon = () => {};
       const triangle = icon === "cloom-triangle-left" || icon === "cloom-triangle-right";
-      if (icon === "cloom-d20" || icon === "refresh-cw" || triangle) {
+      if (icon === "cloom-d20" || icon === "refresh-cw" || triangle || icon === "undo-2") {
         const svg = button.querySelector("svg");
         if (svg) {
           svg.classList.add("cloom-roll-icon");
@@ -392,9 +389,9 @@ export class CardController {
           animateIcon = () => {
             const style = elementWindow(button).getComputedStyle(svg);
             let frames: Keyframe[];
-            if (triangle) {
-              const distance = icon === "cloom-triangle-left" ? -3 : 3;
-              const stacked = !!button.closest(".cloom-name-stacked");
+            if (triangle || icon === "undo-2") {
+              const distance = icon === "cloom-triangle-left" || icon === "undo-2" ? -3 : 3;
+              const stacked = triangle && !!button.closest(".cloom-name-stacked");
               frames = [
                 { translate: style.translate === "none" ? "0px 0px" : style.translate },
                 { translate: stacked ? `0px ${distance}px` : `${distance}px 0px`, offset: 0.25 },
@@ -413,6 +410,13 @@ export class CardController {
           };
         }
       }
+      return animateIcon;
+    };
+    const rerollButton = (container: HTMLElement, key: string | string[] | undefined, label = Array.isArray(key) ? "Внешность" : key ? fieldLabels[key] : "всё", section = false, icon = section ? "refresh-cw" : "cloom-d20") => {
+      const button = container.createEl("button", { cls: section ? "cloom-section-button" : "cloom-field-button", attr: { type: "button", "aria-label": rerollLabels[label], title: "" } });
+      if (Array.isArray(key)) button.setAttribute("data-reroll-fields", key.join(" "));
+      setIcon(button, icon);
+      const animateIcon = setupIconMotion(button, icon, key);
       button.disabled = locked;
       generationButtons.push(button);
       if (!button.innerHTML) button.setText("d20");
@@ -457,6 +461,7 @@ export class CardController {
     const nameRow = identity.createDiv({ cls: "cloom-identity-heading" });
     const undo = nameRow.createEl("button", { cls: "cloom-section-button cloom-undo-button", attr: { type: "button", "aria-label": "Отменить генерацию", title: "Отменить генерацию" } });
     setIcon(undo, "undo-2");
+    const animateUndo = setupIconMotion(undo, "undo-2");
     undo.disabled = locked || !this.options.history.forTarget(target)?.states.length;
     const preserveUndoScroll = this.preserveControlScroll(undo);
     undo.addEventListener("click", event => {
@@ -464,6 +469,7 @@ export class CardController {
       if (isCardLocked(target.source)) { new Notice(lockedNotice); return; }
       if (busy || undo.disabled) return;
       const restore = preserveUndoScroll();
+      animateUndo();
       busy = true;
       void (async () => {
         try {
