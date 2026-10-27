@@ -19,13 +19,22 @@ type CardOptions = {
   report(error: unknown): void;
 };
 
-type IconMotion = { frames: Keyframe[]; started: number };
-type CardRender = { card: HTMLElement; target: CardTarget; signature: string; update(values: Values): void };
+type IconMotion = { frames: Keyframe[]; started: number; locked?: boolean };
+type CardRender = {
+  card: HTMLElement;
+  target: CardTarget;
+  signature: string;
+  update(values: Values): void;
+  dispose(): void;
+  animateLock(motion: IconMotion): void;
+  settleLock(): void;
+};
 const iconMotionDuration = 350;
 
 export class CardController {
   readonly cards = new Map<HTMLElement, CardTarget>();
   private busyTargets = new Set<string>();
+  private lockRequests = new Map<string, { locked: boolean; pending: number }>();
   private editingVariant = false;
   private highlightedBy = new WeakMap<HTMLElement, Set<HTMLElement>>();
   private nameObservers = new Map<HTMLElement, ResizeObserver>();
@@ -38,6 +47,7 @@ export class CardController {
     plugin.register(() => {
       for (const observer of this.nameObservers.values()) observer.disconnect();
       this.nameObservers.clear();
+      for (const el of this.cards.keys()) this.renders.get(el)?.dispose();
       this.iconMotions.clear();
     });
     plugin.registerMarkdownCodeBlockProcessor("cloom", (source, el, ctx) => this.renderCard(source, el, ctx));
@@ -250,6 +260,7 @@ export class CardController {
         this.nameObservers.get(el)?.disconnect();
         this.nameObservers.delete(el);
         this.cards.delete(el);
+        this.renders.get(el)?.dispose();
         this.renders.delete(el);
         el.closest(".cm-embed-block")?.removeClass("cloom-embed-block");
       };
@@ -290,10 +301,10 @@ export class CardController {
     }
     const gender = currentGender(this.options.tables(), raw);
     if (!values.gender && gender) values.gender = genderLabel(this.options.tables(), gender) ?? "";
-    const locked = isCardLocked(target.source);
+    let locked = isCardLocked(target.source);
     const has = (key: string) => !!values[key] || !!this.options.tables()[key]?.length;
     const showStoryText = !!values["backstory-text"] || !!values["backstory-title"] && !knownVariant(this.options.tables(), "backstory-title", raw);
-    const signature = JSON.stringify([target.path, target.lineStart, locked, !!this.options.errors().length,
+    const signature = JSON.stringify([target.path, target.lineStart, !!this.options.errors().length,
       !!el.closest(".markdown-reading-view, .markdown-preview-view"),
       [...Object.keys(fieldLabels), "backstory-text"].map(key => [has(key), !!values[key]]), showStoryText]);
     const previous = this.renders.get(el);
@@ -305,11 +316,13 @@ export class CardController {
     }
     this.nameObservers.get(el)?.disconnect();
     this.nameObservers.delete(el);
+    previous?.dispose();
     this.cards.set(el, target);
     el.closest(".cm-embed-block")?.addClass("cloom-embed-block");
     el.empty();
     const textUpdates: Array<{ key: string; update(value: string): void }> = [];
     const highlights: Array<{ key: string; element: HTMLElement }> = [];
+    const generationButtons: HTMLButtonElement[] = [];
     const highlight = (element: HTMLElement, key: string) => {
       this.highlightUnknown(element, target, key);
       highlights.push({ key, element });
@@ -398,6 +411,7 @@ export class CardController {
         }
       }
       button.disabled = locked;
+      generationButtons.push(button);
       if (!button.innerHTML) button.setText("d20");
       const excludeCurrent = !section || key === "quirk" || key === "backstory-title";
       const preserveScroll = this.preserveControlScroll(button);
@@ -500,6 +514,56 @@ export class CardController {
       title: "", "aria-pressed": String(locked)
     } });
     setIcon(lock, locked ? "lock" : "lock-open");
+    let playingLockMotion: IconMotion | undefined;
+    let lockFrame: number | undefined;
+    const stopLockAnimation = () => {
+      if (lockFrame !== undefined) elementWindow(lock).cancelAnimationFrame(lockFrame);
+      lockFrame = undefined;
+    };
+    const settleLock = () => {
+      stopLockAnimation();
+      lock.empty();
+      const requested = this.lockRequests.get(`${target.path}:${target.lineStart}`);
+      setIcon(lock, (requested?.locked ?? isCardLocked(target.source)) ? "lock" : "lock-open");
+    };
+    const animateLock = (motion: IconMotion) => {
+      const win = elementWindow(lock);
+      if (playingLockMotion === motion || motion.locked === undefined) return;
+      stopLockAnimation();
+      playingLockMotion = motion;
+      if (!lock.animate || win.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+        lock.empty();
+        setIcon(lock, motion.locked ? "lock" : "lock-open");
+        return;
+      }
+      lock.empty();
+      const icon = lock.createSpan({ cls: "cloom-lock-icon" });
+      const closing = motion.locked;
+      let displayedLocked: boolean | undefined;
+      const tick = () => {
+        if (playingLockMotion !== motion) return;
+        const progress = Math.max(0, Math.min(1, (Date.now() - motion.started) / iconMotionDuration));
+        const leg = progress < 0.4 ? progress / 0.4 : progress > 0.6 ? (1 - progress) / 0.4 : 1;
+        const distance = (closing ? -3 : 3) * (1 - Math.cos(Math.PI * leg)) / 2;
+        icon.style.translate = `0px ${distance}px`;
+        const nextLocked = progress >= 0.5 ? closing : !closing;
+        if (displayedLocked !== nextLocked) {
+          displayedLocked = nextLocked;
+          icon.empty();
+          setIcon(icon, nextLocked ? "lock" : "lock-open");
+        }
+        if (progress >= 1) {
+          stopLockAnimation();
+          if (this.iconMotions.get(cardKey)?.get("lock") === motion) this.iconMotions.get(cardKey)?.delete("lock");
+          return;
+        }
+        lockFrame = win.requestAnimationFrame(tick);
+      };
+      tick();
+    };
+    const previousLockMotion = this.iconMotions.get(cardKey)?.get("lock");
+    if (previousLockMotion) animateLock(previousLockMotion);
+    else settleLock();
     lock.addEventListener("mousedown", event => {
       if (event.button === 0) event.preventDefault();
       event.stopPropagation();
@@ -507,7 +571,30 @@ export class CardController {
     lock.addEventListener("click", event => {
       event.stopPropagation();
       const id = `${target.path}:${target.lineStart}`;
-      if (busy || this.busyTargets.has(id)) return;
+      const pending = this.lockRequests.get(id);
+      if (!pending && (busy || this.busyTargets.has(id))) return;
+      const closing = !(pending?.locked ?? isCardLocked(target.source));
+      const request = pending ?? { locked: closing, pending: 0 };
+      request.locked = closing;
+      request.pending++;
+      this.lockRequests.set(id, request);
+      const motion: IconMotion = {
+        started: Date.now(), locked: closing,
+        frames: [
+          { translate: "0px 0px" },
+          { translate: `0px ${closing ? -3 : 3}px`, offset: 0.4 },
+          { translate: `0px ${closing ? -3 : 3}px`, offset: 0.6 },
+          { translate: "0px 0px" }
+        ]
+      };
+      let motions = this.iconMotions.get(cardKey);
+      if (!motions) { motions = new Map(); this.iconMotions.set(cardKey, motions); }
+      motions.set("lock", motion);
+      for (const [host, other] of this.cards) {
+        if (other.path === target.path && other.lineStart === target.lineStart) this.renders.get(host)?.animateLock(motion);
+      }
+      animateLock(motion);
+      if (pending) return;
       const scrollPositions: Array<{ element: HTMLElement; top: number; left: number }> = [];
       for (let element = el.parentElement; element; element = element.parentElement) {
         scrollPositions.push({ element, top: element.scrollTop, left: element.scrollLeft });
@@ -521,17 +608,31 @@ export class CardController {
       busy = true;
       this.busyTargets.add(id);
       void (async () => {
+        let updated = false;
         try {
-          const previousSource = target.source;
-          if (await this.options.documents.updateTarget(target, undefined, "toggle-lock")) {
+          while (request.pending > 0) {
+            request.pending--;
+            const previousSource = target.source;
+            updated = await this.options.documents.updateTarget(target, undefined, "toggle-lock");
+            if (!updated) {
+              new Notice("Character Loom: блок изменился или не найден. Переключите режим заметки и повторите.");
+              break;
+            }
             for (const other of this.cards.values()) {
               if (other.path === target.path && other.lineStart === target.lineStart && other.source === previousSource) other.source = target.source;
             }
             this.refreshCards(target.path);
-            new Notice(isCardLocked(target.source) ? "Редактирование персонажа заблокировано" : "Разблокировано");
-          } else new Notice("Character Loom: блок изменился или не найден. Переключите режим заметки и повторите.");
-        } catch (error) { this.options.report(error); }
+          }
+          if (updated) new Notice(isCardLocked(target.source) ? "Редактирование персонажа заблокировано" : "Разблокировано");
+        } catch (error) { updated = false; this.options.report(error); }
         finally {
+          this.lockRequests.delete(id);
+          if (!updated) {
+            this.iconMotions.get(cardKey)?.delete("lock");
+            for (const [host, other] of this.cards) {
+              if (other.path === target.path && other.lineStart === target.lineStart) this.renders.get(host)?.settleLock();
+            }
+          }
           restoreScroll();
           el.ownerDocument.defaultView?.requestAnimationFrame(restoreScroll);
           busy = false;
@@ -595,7 +696,19 @@ export class CardController {
       paragraph(story, "backstory-title", "[Название предыстории]", "cloom-story-title");
       if (showStoryText) paragraph(story, "backstory-text", "[Текст предыстории]");
     }
-    this.renders.set(el, { card, target, signature, update: next => {
+    this.renders.set(el, { card, target, signature, dispose: stopLockAnimation, animateLock, settleLock, update: next => {
+      const nextLocked = isCardLocked(target.source);
+      if (nextLocked !== locked) {
+        locked = nextLocked;
+        if (locked) card.addClass("cloom-card-locked");
+        else card.removeClass("cloom-card-locked");
+        for (const button of generationButtons) button.disabled = locked;
+        lock.setAttribute("aria-label", locked ? "Разблокировать карточку" : "Заблокировать карточку");
+        lock.setAttribute("aria-pressed", String(locked));
+        const motion = this.iconMotions.get(cardKey)?.get("lock");
+        if (motion) animateLock(motion);
+        else if (!this.lockRequests.has(`${target.path}:${target.lineStart}`)) settleLock();
+      }
       for (const { key, update } of textUpdates) {
         if (values[key] !== next[key]) update(next[key] ?? "");
       }

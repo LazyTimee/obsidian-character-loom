@@ -46,6 +46,7 @@
 .cloom-card button:disabled { opacity: .35; cursor: default; }
 .cloom-field-button svg, .cloom-section-button svg { width: 16px; height: 16px; }
 .cloom-roll-icon { transform-box: fill-box; transform-origin: center; }
+.cloom-lock-icon { display: flex; }
 .cloom-field-button, .cloom-section-button { user-select: none; -webkit-user-select: none; }
 .cloom-field { display: inline; border-radius: 3px; }
 .cloom-field-start { display: inline-block; white-space: nowrap; }
