@@ -6,7 +6,7 @@ import { matchingVariants, VariantEditor, VariantLocation } from "./variant-edit
 import { CardTarget } from "./card-target";
 import { DocumentController } from "./document-controller";
 import { GenerationHistoryStore } from "./generation-history";
-import { isHTMLElement, registerDocumentEvents } from "./window-events";
+import { elementWindow, isHTMLElement, registerDocumentEvents } from "./window-events";
 import { isCardLocked, lockedNotice } from "./card-lock";
 
 type CardOptions = {
@@ -24,10 +24,15 @@ export class CardController {
   private busyTargets = new Set<string>();
   private editingVariant = false;
   private highlightedBy = new WeakMap<HTMLElement, Set<HTMLElement>>();
+  private nameObservers = new Map<HTMLElement, ResizeObserver>();
 
   constructor(private options: CardOptions) {}
 
   register(plugin: Plugin): void {
+    plugin.register(() => {
+      for (const observer of this.nameObservers.values()) observer.disconnect();
+      this.nameObservers.clear();
+    });
     plugin.registerMarkdownCodeBlockProcessor("cloom", (source, el, ctx) => this.renderCard(source, el, ctx));
     registerDocumentEvents(plugin, (doc, listen) => {
       listen("copy", event => {
@@ -184,6 +189,8 @@ export class CardController {
     if (ctx.addChild) {
       const child = new MarkdownRenderChild(el);
       child.onunload = () => {
+        this.nameObservers.get(el)?.disconnect();
+        this.nameObservers.delete(el);
         this.cards.delete(el);
         el.closest(".cm-embed-block")?.removeClass("cloom-embed-block");
       };
@@ -210,6 +217,8 @@ export class CardController {
   }
 
   drawCard(el: HTMLElement, target: CardTarget): void {
+    this.nameObservers.get(el)?.disconnect();
+    this.nameObservers.delete(el);
     this.cards.set(el, target);
     el.closest(".cm-embed-block")?.addClass("cloom-embed-block");
     el.empty();
@@ -330,6 +339,22 @@ export class CardController {
         }
         this.highlightOnInteraction(button, targets);
       });
+      const observer = new (elementWindow(fullName).ResizeObserver)(() => {
+        nameRow.removeClass("cloom-identity-heading-stacked");
+        fullName.removeClass("cloom-name-stacked");
+        fullName.addClass("cloom-name-measuring");
+        const names = fullName.querySelectorAll<HTMLElement>(".cloom-given-name, .cloom-surname");
+        const needsStack = Array.from(names).some(name => name.scrollWidth > name.clientWidth)
+          || controls.scrollWidth > fullName.clientWidth;
+        fullName.removeClass("cloom-name-measuring");
+        if (needsStack) {
+          nameRow.addClass("cloom-identity-heading-stacked");
+          fullName.addClass("cloom-name-stacked");
+        }
+      });
+      observer.observe(nameRow);
+      observer.observe(fullName);
+      this.nameObservers.set(el, observer);
     }
     const actions = nameRow.createDiv({ cls: "cloom-card-actions" });
     const lock = actions.createEl("button", { cls: "cloom-section-button cloom-lock-button", attr: {
@@ -381,8 +406,9 @@ export class CardController {
     if (metadata.length) {
       const heading = identity.createEl("p", { cls: "cloom-meta" });
       metadata.forEach((key, index) => {
-        if (index) heading.createSpan({ cls: "cloom-separator", text: " · " });
-        field(heading, key, true, true);
+        const item = heading.createSpan({ cls: "cloom-meta-item" });
+        if (index) item.createSpan({ cls: "cloom-separator", text: " · ", attr: { "aria-hidden": "true" } });
+        field(item, key, true, true);
       });
     }
     if (has("quirk")) this.highlightUnknown(section("Странность", "quirk").createEl("p", { text: values.quirk || "[Странность]" }), target, "quirk");
@@ -404,7 +430,8 @@ export class CardController {
       const hair = ["hair-length", "hair-type"].filter(has);
       const eyes = ["eyes-kind", "eyes-form", "eyes-color"].filter(has);
       if (hair.length || eyes.length) {
-        description.appendText("У персонажа ");
+        description.createSpan({ cls: "cloom-appearance-prefix", text: "У персонажа" });
+        description.appendText(" ");
         for (const key of hair) { field(description, key, true); description.appendText(" "); }
         if (hair.length) description.appendText("волосы");
         if (hair.length && eyes.length) description.appendText(" и ");
