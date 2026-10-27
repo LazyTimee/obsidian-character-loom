@@ -27,7 +27,7 @@
 .cloom-name > .cloom-given-name.cloom-highlighted,
 .cloom-name > .cloom-surname.cloom-highlighted,
 .cloom-name-controls > button:focus-visible { background: var(--background-modifier-hover); }
-.cloom-card .cloom-meta { display: flex; flex-wrap: wrap; align-items: center; column-gap: 16px; overflow: hidden; margin: 0; color: var(--text-muted); }
+.cloom-card .cloom-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; overflow: hidden; margin: 0; color: var(--text-muted); }
 .cloom-meta-item { position: relative; display: inline-flex; align-items: center; min-width: 0; max-width: 100%; }
 .cloom-meta .cloom-field { display: inline-flex; align-items: center; vertical-align: middle; max-width: 100%; }
 .cloom-meta .cloom-field > span { min-width: 0; }
